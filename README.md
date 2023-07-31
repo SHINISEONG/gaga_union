@@ -26,11 +26,17 @@
 - 팀장: 설계 표준 작성, 개발 일정 관리, 기술 지원  
 - React, Express Git 관리자 : React, Express 개발 환경 구성 및 Source 관리, Spring Boot 개발 환경 구성  
 - CI/CD 관리자 : 젠킨스 CI/CD 구성  
-- Cloud Native Operator : 전반적인 VPC구성, LoadBalancer설정 등, 도커 이미지 관리
-### 담당 서브 시스템
+- Cloud Native Operator : VPC구성, Subnet구성, LoadBalancer설정, SSL 인증, Cloud DB 설정, 도커 이미지 관리 등(Docker Compese, Docker File)
+- 담당 서브 시스템 : 채팅, 커뮤니티  
+### 담당 서브 시스템 구현 기능
+<div style="display: flex;">
+  <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지1 대체 텍스트" style="flex: 1;" width="300"/>
+  <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지2 대체 텍스트" style="flex: 1;" width="300"/>
+</div>
 
 
-### 프로젝트 산출물  
+
+### 💼프로젝트 산출물  
 
 * 프로젝트 발표 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/-J3Eb-AVBCs/0.jpg)](https://youtu.be/-J3Eb-AVBCs)
