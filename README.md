@@ -17,7 +17,7 @@
   ·온라인 소통 공간인 클럽 제공  
   ·다양한 모임 목적 제공  
   ·구체적인 모임 생성 및 검색 위한 필터 제공  
-  ·내부 채팅 기능 제공  
+  ·카카오톡과 같은 내부 채팅 기능 제공 
   ·내부 알림 기능 제공  
   ·프로필을 꾸밀 수 있고, 프로필 페이지를 통해 소통 가능  
 </pre>
@@ -43,9 +43,45 @@
      - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석  
 
 ### 담당 서브 시스템 구현 기능
-##### 1. 읽지 않은 채팅 메시지, 알림 메시지 표시 기능
-> 메인 화면에서 읽지 않은 채팅 메시지의 개수와 읽지 않은 알림 메시지의 유무가 표시 됩니다.
+##### 1. 메인 화면
+> 읽지 않은 채팅 메시지의 개수 표시, 읽지 않은 알림 메시지의 유무 표시.
 <div style="display: flex; justify-content: center;">
   <p align="center">
   <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+</div>
+
+##### 2. 채팅 목록 조회
+> 모임 및 클럽 생성 시 Socket.IO Room 동적 생성, 채팅 목록 최근 메시지 도착 순으로 정렬,  
+> 채팅 방 별 읽지 않은 메시지 수 표시, 최근 메시지 시각 표시.
+<div style="display: flex; justify-content: center;">
+  <p align="center">
+  <img src="https://imgur.com/O2aNKkq.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+</div>
+
+##### 3. 채팅 상세 조회
+> 채팅 입, 퇴장 알림, 메시지 별 읽지 않은 사람 수, 일자 별 메시지 섹션 분리,  
+> 메시지 송신 시각 표시, 분 단위이내 연속 메시지는 송신 시각 마지막 메시지에만 표시,  
+> 한 사람의 연속 메시지 송신 시 프로필 사진 최상단에만 표시.
+<div style="display: flex; justify-content: center;">
+  <p align="center">
+  <img src="https://imgur.com/mt7LBgJ.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+    &nbsp;
+  <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+</div>
+
+##### 4. 이미지 전송
+> 채팅방 내부 이미지 전송 기능
+<div style="display: flex; justify-content: center;">
+  <p align="center">
+  <img src="https://imgur.com/33dmjLg.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+    &nbsp;
+  <img src="https://imgur.com/5QWOdiX.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+</div>
+
+##### 5. 위치 공유 기능
+> 채팅방 내부 위치 공유 기능
+<div style="display: flex; justify-content: center;">
+  <p align="center">
+  <img src="https://imgur.com/EGP3znI.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+  <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
 </div>
