@@ -21,27 +21,19 @@
   ·내부 알림 기능 제공  
   ·프로필을 꾸밀 수 있고, 프로필 페이지를 통해 소통 가능  
 </pre>
----
 ### 역할 및 담당 업무
 - 팀장: 설계 표준 작성, 개발 일정 관리, 기술 지원  
 - React, Express Git 관리자 : React, Express 개발 환경 구성 및 Source 관리, Spring Boot 개발 환경 구성  
 - CI/CD 관리자 : 젠킨스 CI/CD 구성  
 - Cloud Native Operator : VPC구성, Subnet구성, LoadBalancer설정, SSL 인증, Cloud DB 설정, 도커 이미지 관리 등(Docker Compese, Docker File)
 - 담당 서브 시스템 : 채팅, 커뮤니티  
-### 담당 서브 시스템 구현 기능
-<div style="display: flex;">
-  <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지1 대체 텍스트" style="flex: 1;" width="300"/>
-  <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지2 대체 텍스트" style="flex: 1;" width="300"/>
-</div>
-
-
 
 ### 💼프로젝트 산출물  
 
 * 프로젝트 발표 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/-J3Eb-AVBCs/0.jpg)](https://youtu.be/-J3Eb-AVBCs)
      
-* 프로젝트 시연 영상  
+* GAGA 시연 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/Z6uKVdweKa0/0.jpg)](https://youtu.be/Z6uKVdweKa0)
      
 * [프로젝트 기술서](https://drive.google.com/file/d/12P-sJh_LBGfpdKDXpJZ0g6W9TEA003dw/view?usp=drive_link)   
@@ -49,3 +41,11 @@
      - 프로젝트 개요 : 시스템 개요, 업무 영역, 예상 효과, 기술적 고려사항, 개발 이력, Architectures  
      - 분석 산출물 : Use Case Modeling, Application Modeling, 화면분석, 데이터분석  
      - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석  
+
+### 담당 서브 시스템 구현 기능
+##### 1. 읽지 않은 채팅 메시지, 알림 메시지 표시 기능
+> 메인 화면에서 읽지 않은 채팅 메시지의 개수와 읽지 않은 알림 메시지의 유무가 표시 됩니다.
+<div style="display: flex; justify-content: center;">
+  <p align="center">
+  <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+</div>
