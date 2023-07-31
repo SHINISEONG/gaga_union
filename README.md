@@ -52,63 +52,81 @@
 ### ⚙️담당 서브 시스템 구현 기능
 #### 1. 메인 화면
 > 읽지 않은 채팅 메시지의 개수 표시, 읽지 않은 알림 메시지의 유무 표시.
-<div style="display: flex; justify-content: center;">
-  <p align="center">
-  <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
-</div>
+<details>
+  <summary>메인 화면 이미지 보기</summary>
+  <div style="display: flex; justify-content: center;">
+    <p align="center">
+    <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+  </div>
+</details>
 
 #### 2. 채팅 목록 조회
 > 모임 및 클럽 생성 시 Socket.IO Room 동적 생성, 채팅 목록 최근 메시지 도착 순으로 정렬,  
 > 채팅 방 별 읽지 않은 메시지 수 표시, 최근 메시지 시각 표시.
-<div style="display: flex; justify-content: center;">
-  <p align="center">
-  <img src="https://imgur.com/O2aNKkq.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
-</div>
+<details>
+  <summary>채팅 목록 조회 이미지 보기</summary>
+  <div style="display: flex; justify-content: center;">
+    <p align="center">
+    <img src="https://imgur.com/O2aNKkq.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+  </div>
+</details>
 
 #### 3. 채팅 상세 조회
 > 채팅 입, 퇴장 알림, 메시지 별 읽지 않은 사람 수, 일자 별 메시지 섹션 분리,  
 > 메시지 송신 시각 표시, 분 단위이내 연속 메시지는 송신 시각 마지막 메시지에만 표시,  
 > 한 사람의 연속 메시지 송신 시 프로필 사진 최상단에만 표시.
-<div style="display: flex; justify-content: center;">
-  <p align="center">
-  <img src="https://imgur.com/mt7LBgJ.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
-    &nbsp;
-  <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
-</div>
+<details>
+  <summary>채팅 상세 조회 이미지 보기</summary>
+  <div style="display: flex; justify-content: center;">
+    <p align="center">
+    <img src="https://imgur.com/mt7LBgJ.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+      &nbsp;
+    <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+  </div>
+</details>
 
 #### 4. 채팅 부가 기능
 > 이미지 전송 기능, 위치 공유 기능, 새 모임 참여 링크 공유 기능.
-<div style="display: flex; justify-content: center;">
-  <p align="center">
-    <img src="https://imgur.com/33dmjLg.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-    <img src="https://imgur.com/5QWOdiX.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-    <img src="https://imgur.com/EGP3znI.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-    <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-    <img src="https://imgur.com/N0OUodU.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-  </p>
-</div>
+ <details open>
+  <summary>채팅 부가 기능 이미지 보기</summary>
+  <div style="display: flex; justify-content: center;">
+    <p align="center">
+      <img src="https://imgur.com/33dmjLg.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+      <img src="https://imgur.com/5QWOdiX.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+      <img src="https://imgur.com/EGP3znI.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+      <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+      <img src="https://imgur.com/N0OUodU.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    </p>
+  </div>
+ </details>
 
 #### 5. 알림 메시지 조회
 > 클릭시 관련 모임, 클럽 상세 페이지로 이동 기능.
-> <div style="display: flex; justify-content: center;">
-  <p align="center">
-    <img src="https://imgur.com/IiIVVpn.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-  </p>
-</div>
+ <details>
+  <summary>알림 메시지 조회 이미지 보기</summary>
+   <div style="display: flex; justify-content: center;">
+    <p align="center">
+      <img src="https://imgur.com/IiIVVpn.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    </p>
+  </div>
+ </details>
 
 #### 6. 프로필 및 커뮤니티
 > 프로필 사진, 소개, 활동사진(최대 3장) 업로드 및 수정 가능.
 > 모임 목적 별 생성 및 참여 횟수에 따른 타이틀(업적) 기능 제공.
 > 회원 평가 기능, 평가시 회원 온도 반영, 회원 신고 기능.
 > 회원 평가, 신고 중복 체크 기능, 수정 기능.
-<div style="display: flex; justify-content: center;">
-  <p align="center">
-    <img src="https://imgur.com/LSczWBU.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-    <img src="https://imgur.com/SfyopWQ.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-    <img src="https://imgur.com/SCMyG85.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-    <img src="https://imgur.com/G2Sy2gD.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-  </p>
-</div>
+ <details>
+  <summary>프로필 및 커뮤니티 이미지 보기</summary>
+  <div style="display: flex; justify-content: center;">
+    <p align="center">
+      <img src="https://imgur.com/LSczWBU.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+      <img src="https://imgur.com/SfyopWQ.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+      <img src="https://imgur.com/SCMyG85.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+      <img src="https://imgur.com/G2Sy2gD.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    </p>
+  </div>
+ </details>
 
 ### 🏗️ Web Archtecture
 ![웹아키텍쳐](https://imgur.com/QFAua48.png)  
@@ -123,6 +141,10 @@
   * WAS : NginX(Express.JS 서버 리버스 프록시), Tomcat9(Spring Boot 빌드 산출물 구동)
 
 #### 1. Front-end
+<details>
+
+  <summary>프론트엔드 자세히 보기</summary>
+
 ![프론트엔드사용기술](https://imgur.com/qdFMnZc.png)  
 * Node.JS Package 관리 툴로 Yarn을 사용했습니다.
 * Vite 4 : 개발 서버와 번들러를 제공하는 도구입니다. 개발 환경에서는 HMR (Hot Module Replacement)과 같은 빠른 개발 서버를 제공하고, 프로덕션 빌드에서는 ESbuild를 사용하여 번들링을 처리합니다. 때문에, 번들링 속도가 Webpack과 같은 여타 번들러 보다 월등히 빠릅니다. CI/CD 환경구축 시 지속적인 번들링이 발생할 것으로 예상하여 선택했습니다.
@@ -130,12 +152,20 @@
 * MUI(UI/UX) : Material Design 디자인 시스템을 기반으로 한 다양한 React 컴포넌트를 제공하여 UI/UX 구성을 쉽게 도와주는 라이브러리입니다.
 * SWR(Server Data Fetcher) : 서버의 데이터를 쉽게 가져올 수 있게 해주고 클라이언트의 데이터와 서버의 데이터의 동기화를 도와 줍니다. 또한 한번 fetch한 데이터를 캐싱 하기 때문에 매번 API서버에 요청을 보낼 필요가 없게 해줍니다. 이는 성능 향상에 긍정적 영향을 끼칩니다.
 * Zustand(전역 상태 관리) : Props나 useContext로만 상태를 관리하는 것에 한계가 있기에 선택한, 전역상태관리 라이브러리 입니다. 또, 팀 원들이 빠르게 적응해야 했기에 보일러 플레이트 코드가 거의 없어 Redux와 같은 여타 전역상태관리 라이브러리보다 사용법이 간편하여 선택했습니다.
-#### 2-1. Back-end : Spring Boot API Server
-![백엔드사용기술스프링](https://imgur.com/kO7dqqy.png)
-* 내장 WAS 라이브러리가 Tomcat 9에 의존하는 Spring Boot 2.12 버전 사용
-* 빌드 및 의존성 관리 툴로 Maven 선택
-* 데이터 베이스와 상호작용하는 SQL Mapper로 My Batis 사용
-* B/L 
+
+
+</details>
+
+#### 2-1. Back-end : Spring Boot API Server  
+<details>
+  <summary>프론트엔드 자세히 보기</summary>
+    ![백엔드사용기술스프링](https://imgur.com/kO7dqqy.png)  
+    * 내장 WAS 라이브러리가 Tomcat 9에 의존하는 Spring Boot 2.12 버전 사용
+    * 빌드 및 의존성 관리 툴로 Maven 선택
+    * 데이터 베이스와 상호작용하는 SQL Mapper로 My Batis 사용
+    * B/L
+    * 
+</details>
 #### 2-2. Spring AOP
 #### 3. Back-end : Express.JS API Server
 
