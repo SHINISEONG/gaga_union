@@ -50,14 +50,14 @@
 
 
 ### ⚙️담당 서브 시스템 구현 기능
-##### 1. 메인 화면
+#### 1. 메인 화면
 > 읽지 않은 채팅 메시지의 개수 표시, 읽지 않은 알림 메시지의 유무 표시.
 <div style="display: flex; justify-content: center;">
   <p align="center">
   <img src="https://imgur.com/Dn0eTPj.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
 </div>
 
-##### 2. 채팅 목록 조회
+#### 2. 채팅 목록 조회
 > 모임 및 클럽 생성 시 Socket.IO Room 동적 생성, 채팅 목록 최근 메시지 도착 순으로 정렬,  
 > 채팅 방 별 읽지 않은 메시지 수 표시, 최근 메시지 시각 표시.
 <div style="display: flex; justify-content: center;">
@@ -65,7 +65,7 @@
   <img src="https://imgur.com/O2aNKkq.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
 </div>
 
-##### 3. 채팅 상세 조회
+#### 3. 채팅 상세 조회
 > 채팅 입, 퇴장 알림, 메시지 별 읽지 않은 사람 수, 일자 별 메시지 섹션 분리,  
 > 메시지 송신 시각 표시, 분 단위이내 연속 메시지는 송신 시각 마지막 메시지에만 표시,  
 > 한 사람의 연속 메시지 송신 시 프로필 사진 최상단에만 표시.
@@ -76,7 +76,7 @@
   <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
 </div>
 
-##### 4. 채팅 부가 기능
+#### 4. 채팅 부가 기능
 > 이미지 전송 기능, 위치 공유 기능, 새 모임 참여 링크 공유 기능.
 <div style="display: flex; justify-content: center;">
   <p align="center">
@@ -96,7 +96,7 @@
   </p>
 </div>
 
-##### 6. 프로필
+#### 6. 프로필 및 커뮤니티
 > 프로필 사진, 소개, 활동사진(최대 3장) 업로드 및 수정 가능.
 > 모임 목적 별 생성 및 참여 횟수에 따른 타이틀(업적) 기능 제공.
 > 회원 평가 기능, 평가시 회원 온도 반영, 회원 신고 기능.
@@ -109,3 +109,25 @@
     <img src="https://imgur.com/G2Sy2gD.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
   </p>
 </div>
+
+### 🏗️Project Structure
+#### 1. Web Archtecture  
+![웹아키텍쳐](https://imgur.com/QFAua48.png)  
+* Front-end기술로 React를 사용 index.js 코드가 HTML 엘리먼츠를 생성하고 화면을 렌더링하는 CSR을 사용하였습니다.
+* Spring Boot : 채팅 외의 모든 B/L을 수행하고 클라이언트의 요청에 JSON형식의 데이터를 리턴하는 Rest API Server입니다.
+* Express.JS : 채팅에 관련된 B/L을 수행하는 Node.JS 기반의 Rest API Server 입니다.
+* DataBase : 라이선스 문제가 가장 적은 MySQL을 사용하였습니다. 
+* 적용 기술
+  * Front-end : React 18, React-Router v6, MUI(UI/UX), SWR, Zustand, socket.io-client, react-kakao-maps-sdk
+  * Back-end : Spring, MyBatis, Node.js & Express.js, AspectJ, SpringCrypto, AWS-Java-SDK, JavaMailSender, nodemon, aws-sdk&multer-s3, sequelize, socket.io
+  * Tools : yarn, VITE 4, Maven, Junit, Jenkins, Docker
+
+#### 2. Front-end
+!
+#### 3-1. Back-end : Spring Boot API Server
+#### 3-2. Spring AOP
+#### 4. Back-end : Express.JS API Server
+
+### ☁️ Cloud Infra
+#### 1. VPC 설계
+#### 2. CI/CD 구성
