@@ -26,7 +26,11 @@
 
 * 프로젝트 발표 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/-J3Eb-AVBCs/0.jpg)](https://youtu.be/-J3Eb-AVBCs)
-     
+<pre>
+  발표 담당 부분 타임라인(영상 댓글 참조)
+  개발 의도 : 00:00:55 ~ 00:05:10
+  기술 소개 : 00:21:12 ~ 00:28:40
+</pre>
 * GAGA 시연 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/Z6uKVdweKa0/0.jpg)](https://youtu.be/Z6uKVdweKa0)
      
