@@ -76,21 +76,22 @@
   <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
 </div>
 
-##### 4. 이미지 전송
-> 채팅방 내부 이미지 전송 기능
+##### 4. 채팅 부가 기능
+> 이미지 전송 기능, 위치 공유 기능, 새 모임 참여 링크 공유 기능.
 <div style="display: flex; justify-content: center;">
   <p align="center">
-  <img src="https://imgur.com/33dmjLg.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
-    &nbsp;
-  <img src="https://imgur.com/5QWOdiX.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+  <img src="https://imgur.com/33dmjLg.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+  <img src="https://imgur.com/5QWOdiX.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+  <img src="https://imgur.com/EGP3znI.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+  <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+  <img src="https://imgur.com/N0OUodU.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
 </div>
 
 ##### 5. 위치 공유
 > 채팅방 내부 위치 공유 기능(KAKAO Map API 활용)
 <div style="display: flex; justify-content: center;">
   <p align="center">
-  <img src="https://imgur.com/EGP3znI.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
-  <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
+  
 </div>
 
-##### 6. 
+##### 6. 프로필 
