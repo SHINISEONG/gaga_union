@@ -123,7 +123,7 @@
   * Tools : yarn, VITE 4, Maven, Junit, Jenkins, Docker
 
 #### 2. Front-end
-![프론트엔드사용기술](https://imgur.com/qdFMnZc.png)
+![프론트엔드사용기술](https://imgur.com/qdFMnZc.png)  
 * Node.JS Package 관리 툴로 Yarn을 사용했습니다.
 * Vite 4 : 개발 서버와 번들러를 제공하는 도구입니다. 개발 환경에서는 HMR (Hot Module Replacement)과 같은 빠른 개발 서버를 제공하고, 프로덕션 빌드에서는 ESbuild를 사용하여 번들링을 처리합니다. 때문에, 번들링 속도가 Webpack과 같은 여타 번들러 보다 월등히 빠릅니다. CI/CD 환경구축 시 지속적인 번들링이 발생할 것으로 예상하여 선택했습니다.
 * React-Roudter(페이지 라우팅) : URI를 파싱하여 요구사항에 맞는 View로 Routing 합니다.
