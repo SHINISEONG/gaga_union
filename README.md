@@ -47,7 +47,7 @@
 - 담당 서브 시스템 : 채팅, 커뮤니티
 - 그 외 담당 업무 : Prezi 제작(프레젠테이션), 디버깅
 
-
+---
 
 ### ⚙️담당 서브 시스템 구현 기능
 <details>
@@ -123,8 +123,15 @@
 
 </details>
 
-### 🏗️ Web Archtecture
+---
+
+### 🏗️ 웹 아키텍쳐
+
 ![웹아키텍쳐](https://imgur.com/QFAua48.png)  
+
+<details>
+  <summary>웹 아키텍쳐 설명 자세히 보기</summary>
+  
 * Front-end기술로 React를 사용, 최초의 REQ에서 배급된 index.js 코드가 index.html을 렌더링하는 CSR을 사용하였습니다.
 * Spring Boot : 채팅 외의 모든 B/L을 수행하고 클라이언트의 요청에 JSON형식의 데이터를 리턴하는 Rest API Server입니다.
 * Express.JS : 채팅에 관련된 B/L만 수행하는 Node.JS 기반의 Rest API Server 입니다.
@@ -135,7 +142,14 @@
   * Tools : yarn, VITE 4, Maven, Junit, Jenkins, Docker
   * WAS : NginX(Express.JS 서버 리버스 프록시), Tomcat9(Spring Boot 빌드 산출물 구동)
 
-#### 1. Front-end
+</details>
+
+#### 1. Front-end : Vite - React
+> SPA 구현으로 네이티브 앱 같이 부드럽고 빠른 화면의 유저 경험을 제공해주는 React 코드
+
+> 의존성 관계 설정, 개발 환경 구성 및 배포, 채팅 및 커뮤니티 화면 전담,
+> 팀원들이 구현을 어려워 하는 부분 기술 지원
+
 ![프론트엔드사용기술](https://imgur.com/qdFMnZc.png)  
 
 <details>
@@ -147,9 +161,11 @@
   * MUI(UI/UX) : Material Design 디자인 시스템을 기반으로 한 다양한 React 컴포넌트를 제공하여 UI/UX 구성을 쉽게 도와주는 라이브러리입니다.
   * SWR(Server Data Fetcher) : 서버의 데이터를 쉽게 가져올 수 있게 해주고 클라이언트의 데이터와 서버의 데이터의 동기화를 도와 줍니다. 또한 한번 fetch한 데이터를 캐싱 하기 때문에 매번 API서버에 요청을 보낼 필요가 없게 해줍니다. 이는 성능 향상에 긍정적 영향을 끼칩니다.
   * Zustand(전역 상태 관리) : Props나 useContext로만 상태를 관리하는 것에 한계가 있기에 선택한, 전역상태관리 라이브러리 입니다. 또, 팀 원들이 빠르게 적응해야 했기에 보일러 플레이트 코드가 거의 없어 Redux와 같은 여타 전역상태관리 라이브러리보다 사용법이 간편하여 선택했습니다.
+    
 </details>
 
-#### 2-1. Back-end : Spring Boot API Server  
+#### 2. Back-end : Spring Boot API Server  
+> 채팅 외의 모든 요청 사항을 수행하는 API Server
 
 ![백엔드사용기술스프링](https://imgur.com/kO7dqqy.png)
     
@@ -172,11 +188,22 @@
   * 정식 멤버로 승격되어 채팅방 자동 입장시, 채팅방 내부 입장 알림
   * 모임 리더가 모임 채팅방 삭제 시 채팅방이 삭제되었음을 알림
   -> 채팅 서브시스템과 연계된 타 서브시스템과의 코드 결합도를 떨어뜨리기 위해 after handle로 weaving하여 cross concern 수행
+    
 </details>
 
 #### 3. Back-end : Express.JS API Server
+> Socket.IO를 활용, 채팅과 알림 등 클라이언트와 실시간 상호작용을 전담해서 처리하는 채팅 API Server
 
-![익스프레스서버기술](.png)
+![익스프레스서버기술](https://imgur.com/gYLtoVv.png)
+
+<details>
+  <summary>스프링부트 API Server 자세히 보기</summary>
+
+* 요구사항 매핑과 비즈니스 로직 수행을 함께 하는 Router 구성
+* 데이터 베이스와의 상호작용을 위해 ORM인 Sequelize 사용
+* Persistence Layer는 Sequelize 객체를 확장해 Model을 정의하고 이를 라우터에서 Import하여 사용
+
+</details>
 
 ### ☁️ Cloud Infra
 #### 1. VPC 설계
