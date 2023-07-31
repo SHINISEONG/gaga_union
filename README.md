@@ -21,12 +21,6 @@
   ·내부 알림 기능 제공  
   ·프로필을 꾸밀 수 있고, 프로필 페이지를 통해 소통 가능  
 </pre>
-### 역할 및 담당 업무
-- 팀장: 설계 표준 작성, 개발 일정 관리, 기술 지원  
-- React, Express Git 관리자 : React, Express 개발 환경 구성 및 Source 관리, Spring Boot 개발 환경 구성  
-- CI/CD 관리자 : 젠킨스 CI/CD 구성  
-- Cloud Native Operator : VPC구성, Subnet구성, LoadBalancer설정, SSL 인증, Cloud DB 설정, 도커 이미지 관리 등(Docker Compese, Docker File)
-- 담당 서브 시스템 : 채팅, 커뮤니티  
 
 ### 💼프로젝트 산출물  
 
@@ -40,9 +34,18 @@
 * [프로젝트 보고서](https://acrobat.adobe.com/link/review?uri=urn%3Aaaid%3Ascds%3AUS%3Ad361e49b-10db-41c1-a09c-3329c2863099)  
      - 프로젝트 개요 : 시스템 개요, 업무 영역, 예상 효과, 기술적 고려사항, 개발 이력, Architectures  
      - 분석 산출물 : Use Case Modeling, Application Modeling, 화면분석, 데이터분석  
-     - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석  
+     - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석
+### 👤역할 및 담당 업무
+- 팀장: 설계 표준 작성, 개발 일정 관리, 기술 지원  
+- React, Express Git 관리자 : React, Express 개발 환경 구성 및 Source 관리, Spring Boot 개발 환경 구성  
+- CI/CD 관리자 : 젠킨스 CI/CD 구성  
+- Cloud Native Operator : VPC구성, Subnet구성, LoadBalancer설정, SSL 인증, Cloud DB 설정, 도커 이미지 관리 등(Docker Compese, Docker File)
+- 담당 서브 시스템 : 채팅, 커뮤니티
+- 그 외 담당 업무 : Prezi 제작(프레젠테이션), 디버깅
 
-### 담당 서브 시스템 구현 기능
+
+
+### ⚙️담당 서브 시스템 구현 기능
 ##### 1. 메인 화면
 > 읽지 않은 채팅 메시지의 개수 표시, 읽지 않은 알림 메시지의 유무 표시.
 <div style="display: flex; justify-content: center;">
@@ -78,10 +81,12 @@
   <img src="https://imgur.com/5QWOdiX.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
 </div>
 
-##### 5. 위치 공유 기능
-> 채팅방 내부 위치 공유 기능
+##### 5. 위치 공유
+> 채팅방 내부 위치 공유 기능(KAKAO Map API 활용)
 <div style="display: flex; justify-content: center;">
   <p align="center">
   <img src="https://imgur.com/EGP3znI.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
   <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
 </div>
+
+##### 6. 
