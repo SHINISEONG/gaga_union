@@ -80,18 +80,32 @@
 > 이미지 전송 기능, 위치 공유 기능, 새 모임 참여 링크 공유 기능.
 <div style="display: flex; justify-content: center;">
   <p align="center">
-  <img src="https://imgur.com/33dmjLg.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-  <img src="https://imgur.com/5QWOdiX.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-  <img src="https://imgur.com/EGP3znI.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-  <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
-  <img src="https://imgur.com/N0OUodU.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    <img src="https://imgur.com/33dmjLg.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    <img src="https://imgur.com/5QWOdiX.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    <img src="https://imgur.com/EGP3znI.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    <img src="https://imgur.com/qbJ9jvV.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    <img src="https://imgur.com/N0OUodU.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+  </p>
 </div>
 
-##### 5. 위치 공유
-> 채팅방 내부 위치 공유 기능(KAKAO Map API 활용)
+#### 5. 알림 메시지 조회
+> 클릭시 관련 모임, 클럽 상세 페이지로 이동 기능.
+> <div style="display: flex; justify-content: center;">
+  <p align="center">
+    <img src="https://imgur.com/IiIVVpn.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+  </p>
+</div>
+
+##### 6. 프로필
+> 프로필 사진, 소개, 활동사진(최대 3장) 업로드 및 수정 가능.
+> 모임 목적 별 생성 및 참여 횟수에 따른 타이틀(업적) 기능 제공.
+> 회원 평가 기능, 평가시 회원 온도 반영, 회원 신고 기능.
+> 회원 평가, 신고 중복 체크 기능, 수정 기능.
 <div style="display: flex; justify-content: center;">
   <p align="center">
-  
+    <img src="https://imgur.com/LSczWBU.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    <img src="https://imgur.com/SfyopWQ.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    <img src="https://imgur.com/SCMyG85.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+    <img src="https://imgur.com/G2Sy2gD.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="180"/>
+  </p>
 </div>
-
-##### 6. 프로필 
