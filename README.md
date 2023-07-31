@@ -113,18 +113,25 @@
 ### 🏗️Project Structure
 #### 1. Web Archtecture  
 ![웹아키텍쳐](https://imgur.com/QFAua48.png)  
-* Front-end기술로 React를 사용 index.js 코드가 HTML 엘리먼츠를 생성하고 화면을 렌더링하는 CSR을 사용하였습니다.
+* Front-end기술로 React를 사용, 최초의 REQ에서 배급된 index.js 코드가 index.html을 렌더링하는 CSR을 사용하였습니다.
 * Spring Boot : 채팅 외의 모든 B/L을 수행하고 클라이언트의 요청에 JSON형식의 데이터를 리턴하는 Rest API Server입니다.
-* Express.JS : 채팅에 관련된 B/L을 수행하는 Node.JS 기반의 Rest API Server 입니다.
+* Express.JS : 채팅에 관련된 B/L만 수행하는 Node.JS 기반의 Rest API Server 입니다.
 * DataBase : 라이선스 문제가 가장 적은 MySQL을 사용하였습니다. 
 * 적용 기술
   * Front-end : React 18, React-Router v6, MUI(UI/UX), SWR, Zustand, socket.io-client, react-kakao-maps-sdk
-  * Back-end : Spring, MyBatis, Node.js & Express.js, AspectJ, SpringCrypto, AWS-Java-SDK, JavaMailSender, nodemon, aws-sdk&multer-s3, sequelize, socket.io
+  * Back-end : Spring, MyBatis, Node.js 18 & Express.js, AspectJ, SpringCrypto, AWS-Java-SDK, JavaMailSender, nodemon, aws-sdk&multer-s3, sequelize, socket.io
   * Tools : yarn, VITE 4, Maven, Junit, Jenkins, Docker
 
 #### 2. Front-end
-!
+![프론트엔드사용기술](https://imgur.com/qdFMnZc.png)
+* Node.JS Package 관리 툴로 Yarn을 사용했습니다.
+* Vite 4 : 개발 서버와 번들러를 제공하는 도구입니다. 개발 환경에서는 HMR (Hot Module Replacement)과 같은 빠른 개발 서버를 제공하고, 프로덕션 빌드에서는 ESbuild를 사용하여 번들링을 처리합니다. 때문에, 번들링 속도가 Webpack과 같은 여타 번들러 보다 월등히 빠릅니다. CI/CD 환경구축 시 지속적인 번들링이 발생할 것으로 예상하여 선택했습니다.
+* React-Roudter(페이지 라우팅) : URI를 파싱하여 요구사항에 맞는 View로 Routing 합니다.
+* MUI(UI/UX) : Material Design 디자인 시스템을 기반으로 한 다양한 React 컴포넌트를 제공하여 UI/UX 구성을 쉽게 도와주는 라이브러리입니다.
+* SWR(Server Data Fetcher) : 서버의 데이터를 쉽게 가져올 수 있게 해주고 클라이언트의 데이터와 서버의 데이터의 동기화를 도와 줍니다. 또한 한번 fetch한 데이터를 캐싱 하기 때문에 매번 API서버에 요청을 보낼 필요가 없게 해줍니다. 이는 성능 향상에 긍정적 영향을 끼칩니다.
+* Zustand(전역 상태 관리) : Props나 useContext로만 상태를 관리하는 것에 한계가 있기에 선택한, 전역상태관리 라이브러리 입니다. 또, 팀 원들이 빠르게 적응해야 했기에 보일러 플레이트 코드가 거의 없어 Redux와 같은 여타 전역상태관리 라이브러리보다 사용법이 간편하여 선택했습니다.
 #### 3-1. Back-end : Spring Boot API Server
+
 #### 3-2. Spring AOP
 #### 4. Back-end : Express.JS API Server
 
