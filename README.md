@@ -121,6 +121,7 @@
   * Front-end : React 18, React-Router v6, MUI(UI/UX), SWR, Zustand, socket.io-client, react-kakao-maps-sdk
   * Back-end : Spring, MyBatis, Node.js 18 & Express.js, AspectJ, SpringCrypto, AWS-Java-SDK, JavaMailSender, nodemon, aws-sdk&multer-s3, sequelize, socket.io
   * Tools : yarn, VITE 4, Maven, Junit, Jenkins, Docker
+  * WAS : NginX(Express.JS 서버 리버스 프록시), Tomcat9(Spring Boot 빌드 산출물 구동)
 
 #### 2. Front-end
 ![프론트엔드사용기술](https://imgur.com/qdFMnZc.png)  
@@ -131,7 +132,11 @@
 * SWR(Server Data Fetcher) : 서버의 데이터를 쉽게 가져올 수 있게 해주고 클라이언트의 데이터와 서버의 데이터의 동기화를 도와 줍니다. 또한 한번 fetch한 데이터를 캐싱 하기 때문에 매번 API서버에 요청을 보낼 필요가 없게 해줍니다. 이는 성능 향상에 긍정적 영향을 끼칩니다.
 * Zustand(전역 상태 관리) : Props나 useContext로만 상태를 관리하는 것에 한계가 있기에 선택한, 전역상태관리 라이브러리 입니다. 또, 팀 원들이 빠르게 적응해야 했기에 보일러 플레이트 코드가 거의 없어 Redux와 같은 여타 전역상태관리 라이브러리보다 사용법이 간편하여 선택했습니다.
 #### 3-1. Back-end : Spring Boot API Server
-
+![백엔드사용기술스프링](https://imgur.com/kO7dqqy.png)
+* 내장 WAS 라이브러리가 Tomcat 9에 의존하는 Spring Boot 2.12 버전 사용
+* 빌드 및 의존성 관리 툴로 Maven 선택
+* 데이터 베이스와 상호작용하는 SQL Mapper로 My Batis 사용
+* 
 #### 3-2. Spring AOP
 #### 4. Back-end : Express.JS API Server
 
