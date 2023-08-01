@@ -176,7 +176,7 @@
 #### 2. Back-end : Spring Boot API Server  
 > 채팅 외의 모든 요청 사항을 수행하는 API Server
 
-> Spring Boot Starter 사용법 기술 공유, Spring Boot 버전 선정, 기본적인 의존성 관계 설정, Spring Boot 설계 표준 작성, 세션 및 Cors 관련 Config 설정,  
+> Spring Boot Starter 사용법 기술 공유, Spring Boot 버전 선정, 기본적인 의존성 관계 설정, Spring Boot 설계 표준 작성, 세션 및 CORS 관련 Config 설정,  
 > 커뮤니티 서브시스템 API 서버 개발(Rest Controller, Model Layer, My Batis SQL Mapper)
 
 ![백엔드사용기술스프링](https://imgur.com/kO7dqqy.png)
@@ -184,24 +184,24 @@
 <details>
   <summary>스프링부트 API Server 자세히 보기</summary>
 
-* 내장 WAS 라이브러리가 Tomcat 9에 의존하는 Spring Boot 2.12 버전 사용.
-* 빌드 및 의존성 관리 툴로 Maven 선택.
-* 데이터 베이스와 상호작용하는 SQL Mapper로 My Batis 사용.
+* 내장 WAS 라이브러리가 Tomcat 9에 의존하는 Spring Boot 2.12 버전을 사용했습니다.
+* 빌드 및 의존성 관리 툴로 Maven을 선택하였습니다.
+* 데이터 베이스와 상호작용하는 SQL Mapper로 My Batis를 사용합니다.
 * Layer 설계
   ![모델레이어](https://i.imgur.com/dyWozom.png)
-  * Model Layer를 다시 한 번 Service Layer와 Persistence Layer로 구분.
-  * Persistence Layer는 DB와의 상호작용(CRUD)에 집중.
-  * Service Layer 는 Persistence Layer에 정의된 데이터베이스 상호 작용을 조합하여 B/L 수행.
-  * Control Layer 에서는 Service Layer의 Interface에 의존 -> 각 레이어간의 느슨한 결합 유지 및 코드 유지보수성 향상.
-  * Control Layer 에서는 Service Layer에 의존 중이므로 Persistence Layer와 데이터베이스간의 상호작용에 대한 절차은닉 달성.
+  * Model Layer를 다시 한 번 Service Layer와 Persistence Layer로 구분하였습니다.
+  * 이러한 설계로 인해 Persistence Layer는 DB와의 상호작용(CRUD)에만 집중할 수 있습니다.
+  * Service Layer 는 Persistence Layer에 정의된 데이터베이스 상호 작용을 조합하여 B/L을 수행합니다.
+  * Control Layer 에서는 Service Layer의 Interface에 의존 -> 각 레이어간의 결합도를 떨어뜨리고 및 코드 유지보수를 용이하게 합니다.
+  * Control Layer 에서는 Service Layer에 의존 중이므로 Persistence Layer와 데이터베이스간의 상호작용에 대한 절차은닉이 일어납니다.
       
 * 시스템 알림 및 자동 채팅 메시지 발송을 위한 AOP 구성
   ![Imgur](https://i.imgur.com/5zzKr4T.png)
-  * 기존 모임 기반 모임 생성시 기존 모임 채팅방에 새 모임 참여하기 링크 자동 발송.
-  * 모임 참여 신청 멤버의 정식 멤버 승격 시 참여를 신청한 회원에게 정식 멤버로 승격되었음을 알림.
-  * 정식 멤버로 승격되어 채팅방 자동 입장시, 채팅방 내부 입장 알림.
-  * 모임 리더가 모임 채팅방 삭제 시 채팅방이 삭제되었음을 알림.
-  -> 채팅 서브시스템과 연계된 타 서브시스템과의 코드 결합도를 떨어뜨리기 위해 after handle로 weaving하여 cross concern 수행.
+  > 기존 모임 기반 모임 생성시 기존 모임 채팅방에 새 모임 참여하기 링크를 자동 발송.
+  > 모임 참여 신청 멤버의 정식 멤버 승격 시 참여를 신청한 회원에게 정식 멤버로 승격되었음을 알림.
+  > 정식 멤버로 승격되어 채팅방 자동 입장시, 채팅방 내부 입장 알림.
+  > 모임 리더가 모임 채팅방 삭제 시 채팅방이 삭제되었음을 알림.
+  * 채팅 서브시스템과 연계된 타 서브시스템과의 코드 결합도를 떨어뜨리기 위해 after handle로 weaving하여 cross concern을 수행합니다.
 
 </details>
 
@@ -215,9 +215,9 @@
 <details>
   <summary>Express API Server 자세히 보기</summary>
 
-* 요구사항 매핑과 비즈니스 로직 수행을 함께 하는 Router 구성
-* 데이터 베이스와의 상호작용을 위해 ORM인 Sequelize 사용
-* Persistence Layer는 Sequelize 객체를 확장해 Model을 정의하고 이를 라우터에서 Import하여 사용
+* 요구사항 매핑과 비즈니스 로직 수행을 함께 하는 Router 구성하였습니다.
+* 데이터 베이스와의 상호작용을 위해 ORM인 Sequelize 사용합니다.
+* Persistence Layer에서 Sequelize 객체를 확장해 Model을 정의하고 이를 라우터에서 Import하여 사용합니다.
 
 </details>
 
@@ -234,23 +234,23 @@
 
 * VPC IP 대역 10.0.0.0/16
 * Public Subnet 대역 10.0.1.0/24
-  * 클라이언트 요구사항 별 부하 분산을 위한 2대의 Load Balancer 구성
-  * Load Balancer의 헬스 체크 및 가용성 유지로 서버 장애시의 Fail Over
-  * Certificate Manager에 등록된 SSL 인증서로 Load Balancer SSL 인증
+  * 클라이언트 요구사항 별 부하 분산을 위한 2대의 Load Balancer 구성하였습니다.
+  * Load Balancer의 헬스 체크로 타겟그룹 서버 장애시 Scale Out으로 Fail Over하여 가용성을 유지합니다.
+  * Global DNS와 Certificate Manager를 사용해 SSL 인증서로 Load Balancer SSL 인증이 이루어집니다.
   * Web Server L/B
-    * 채팅 외의 모든 업무를 처리하는 웹 서버에 부하 분산
-    * www.gaga.works로 인입되는 모든 요구사항 처리
+    * 채팅 외의 모든 업무를 처리하는 웹 서버에 부하를 분산합니다.
+    * www.gaga.works로 인입되는 모든 요구사항을 처리합니다.
     * Target Group - Web Server
-    * 타겟 그룹에서 https 요청을 알 수 있도록 Tomcat에 X-Fowarded-Proto 설정
+    * 타겟 그룹에서 https 요청을 알 수 있도록 Tomcat에 X-Fowarded-Proto 관련 설정을 해 두었습니다.
   * Chatting Server L/B
-    * 채팅을 전담 해서 처리하는 채팅 서버에 부하 분산
-    * chat.gaga.works로 인입되는 모든 요구사항 처리
+    * 채팅을 전담 해서 처리하는 채팅 서버에 부하를 분산합니다.
+    * chat.gaga.works로 인입되는 모든 요구사항을 처리합니다.
     * Target Group - Chatting Server
-    * 타겟 그룹에서 https 요청을 알 수 있도록 NginX에 X-Fowarded-Proto 설
+    * 타겟 그룹에서 https 요청을 알 수 있도록 NginX에 X-Fowarded-Proto 관련 설정을 해 두었습니다.
 * Private Subnet 대역 10.0.2.0/24
-  * 보안이 중요한 Cloud DB for MySQL 운용
-
-* VPC 외부 
+  * 보안이 중요한 Cloud DB for MySQL을 운용 중 입니다.
+* VPC 외부
+  * CI/CD를 위한 Jenknis Server를 운용 중 입니다.
 #### 2. CI/CD 구성
 
 ### ✔️문제 해결 부분
