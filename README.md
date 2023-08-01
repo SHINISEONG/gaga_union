@@ -73,6 +73,7 @@
 > 채팅 입, 퇴장 알림, 메시지 별 읽지 않은 사람 수, 일자 별 메시지 섹션 분리,  
 > 메시지 송신 시각 표시, 분 단위이내 연속 메시지는 송신 시각 마지막 메시지에만 표시,  
 > 한 사람의 연속 메시지 송신 시 프로필 사진 최상단에만 표시.
+> 리버스 무한 스크롤 적용.
   <div style="display: flex; justify-content: center;">
     <p align="center">
     <img src="https://imgur.com/mt7LBgJ.jpg" alt="이미지1 대체 텍스트" style="flex: 1; margin: 100px;" width="250"/>
@@ -127,12 +128,16 @@
 ## ♾️DevOps
 ![데브옵스](https://imgur.com/Jv8Ex8Z.png)
 
-* 사용 기술
+<details>
+  <summary>사용 기술 자세히 보기</summary>
+
   * Front-end : React 18, React-Router v6, MUI(UI/UX), SWR, Zustand, socket.io-client, react-kakao-maps-sdk
   * Back-end : Spring, MyBatis, Node.js 18 & Express.js, AspectJ, SpringCrypto, AWS-Java-SDK, JavaMailSender, nodemon, aws-sdk&multer-s3, sequelize, socket.io
   * Naver Cloud Platfrom : VPC, Server, Global DNS, Certificate Manager, Cloud DB for MySQL, Load Balancer, CDN+, ObjectStorage
   * Tools : yarn, VITE 4, Maven, Junit, Jenkins, Docker, VS Code, Eclipse
   * WAS : Tomcat(Spring Boot 웹 어플리케이션), NginX(Express.JS 웹 어플리케이션 리버스 프록시)
+
+</details>
 
 ### 🏗️ 웹 아키텍쳐
 
@@ -145,7 +150,6 @@
 * Spring Boot : 채팅 외의 모든 B/L을 수행하고 클라이언트의 요청에 JSON형식의 데이터를 리턴하는 Rest API Server입니다.
 * Express.JS : 채팅에 관련된 B/L만 수행하는 Node.JS 기반의 Rest API Server 입니다.
 * DataBase : 라이선스 문제가 가장 적은 MySQL을 사용하였습니다. 
-
 
 </details>
 
@@ -222,12 +226,35 @@
 > On Demand 방식으로 Infra 구성 및 확장 용이
 > SPOF(Single Point Of Failure)의 Fail Over 설정
 > 코드 취합, 빌드 배포 자동화를 위한 CI/CD 구성
-> Object Storage 관련 설정 외 모든 부분 전담
- 
-#### 1. VPC 설계
 
+> Object Storage 관련 설정 외 모든 VPC, CI/CD 설계 및 구성 전담
+ 
+#### 1. VPC 구성
+![VPC설계](https://imgur.com/MypY9iO.png)
+
+* VPC IP 대역 10.0.0.0/16
+* Public Subnet 대역 10.0.1.0/24
+  * 클라이언트 요구사항 별 부하 분산을 위한 2대의 Load Balancer 구성
+  * Certificate Manager에 등록된 SSL 인증서로 Load Balancer SSL 인증
+  * Web Server L/B
+    * 채팅 외의 모든 업무를 처리하는 웹 서버에 부하 분산
+    * www.gaga.works로 인입되는 모든 요구사항 처리
+    * Target Group - Web Server
+    * 타겟 그룹에서 https 요청을 알 수 있도록 Tomcat에 X-Fowarded-Proto 설정
+  * Chatting Server L/B
+    * 채팅을 전담 해서 처리하는 채팅 서버에 부하 분산
+    * chat.gaga.works로 인입되는 모든 요구사항 처리
+    * Target Group - Chatting Server
+    * 타겟 그룹에서 https 요청을 알 수 있도록 NginX에 X-Fowarded-Proto 설
+* Private Subnet 대역 10.0.2.0/24
+  * 보안이 중요한 Cloud DB for MySQL 운용
+
+* VPC 외부 
 #### 2. CI/CD 구성
 
 ### ✔️문제 해결 부분
+#### 1. 코드 관련 부분
+#### 2. 인프라 관련 부분
+
 ### 🔧아쉬운 점 & 개선 방향
 ### 💭프로젝트 소감
