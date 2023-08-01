@@ -182,28 +182,41 @@
 ![백엔드사용기술스프링](https://imgur.com/kO7dqqy.png)
     
 <details>
-  <summary>스프링부트 API Server 자세히 보기</summary>
+  <summary>스프링부트 API Server 설명 자세히 보기</summary>
 
 * 내장 WAS 라이브러리가 Tomcat 9에 의존하는 Spring Boot 2.12 버전을 사용했습니다.
 * 빌드 및 의존성 관리 툴로 Maven을 선택하였습니다.
 * 데이터 베이스와 상호작용하는 SQL Mapper로 My Batis를 사용합니다.
-* Layer 설계
+
+</details>
+
+* Spring Boot API Server Layer 설계
   ![모델레이어](https://i.imgur.com/dyWozom.png)
+  
+  <details>
+  <summary>Layer 설계 설명 자세히 보기</summary>
   * Model Layer를 다시 한 번 Service Layer와 Persistence Layer로 구분하였습니다.
   * 이러한 설계로 인해 Persistence Layer는 DB와의 상호작용(CRUD)에만 집중할 수 있습니다.
   * Service Layer 는 Persistence Layer에 정의된 데이터베이스 상호 작용을 조합하여 B/L을 수행합니다.
   * Control Layer 에서는 Service Layer의 Interface에 의존 -> 각 레이어간의 결합도를 떨어뜨리고 및 코드 유지보수를 용이하게 합니다.
   * Control Layer 에서는 Service Layer에 의존 중이므로 Persistence Layer와 데이터베이스간의 상호작용에 대한 절차은닉이 일어납니다.
-      
+    
+  </details>
+  
 * 시스템 알림 및 자동 채팅 메시지 발송을 위한 AOP 구성
   ![Imgur](https://i.imgur.com/5zzKr4T.png)
+  
+  <details>
+  <summary>시스템 알림설명 자세히 보기</summary>
   > 기존 모임 기반 모임 생성시 기존 모임 채팅방에 새 모임 참여하기 링크를 자동 발송.
   > 모임 참여 신청 멤버의 정식 멤버 승격 시 참여를 신청한 회원에게 정식 멤버로 승격되었음을 알림.
   > 정식 멤버로 승격되어 채팅방 자동 입장시, 채팅방 내부 입장 알림.
   > 모임 리더가 모임 채팅방 삭제 시 채팅방이 삭제되었음을 알림.
   * 채팅 서브시스템과 연계된 타 서브시스템과의 코드 결합도를 떨어뜨리기 위해 after handle로 weaving하여 cross concern을 수행합니다.
+  * 채팅 서브시스팀과 타 서브시스템 간의 느슨한 결합을 유지하게 해줍니다. 채팅 메시지 변경 및 채팅 API서버 변경시 타 서브 시스템 코드 수정이 불필요 함으로 유지보수성이 향상 됩니다.
+    
+  </details>
 
-</details>
 
 #### 3. Back-end : Express.JS API Server
 > Socket.IO를 활용, 채팅과 알림 등 클라이언트와 실시간 상호작용을 전담해서 처리하는 채팅 API Server
