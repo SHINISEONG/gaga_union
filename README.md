@@ -40,7 +40,7 @@
      - 분석 산출물 : Use Case Modeling, Application Modeling, 화면분석, 데이터분석  
      - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석
 ### 👤역할 및 담당 업무
-- 팀장: 설계 표준 작성, 개발 일정 관리, 기술 지원  
+- 팀장: 기술 표준 선택, 설계 표준 작성, 개발 일정 관리, 기술 지원  
 - React, Express Git 관리자 : React, Express 개발 환경 구성 및 Source 관리, Spring Boot 개발 환경 구성  
 - CI/CD 관리자 : 젠킨스 CI/CD 구성  
 - Cloud Native Operator : VPC구성, Subnet구성, LoadBalancer설정, SSL 인증, Cloud DB 설정, 도커 이미지 관리 등(Docker Compese, Docker File)
@@ -50,8 +50,8 @@
 ---
 
 ### ⚙️담당 서브 시스템 구현 기능
-<details>
-  <summary>구현 기능 자세히 보기</summary>
+<!-- <details>
+  <summary>구현 기능 자세히 보기</summary> -->
   
 #### 1. 메인 화면
 > 읽지 않은 채팅 메시지의 개수 표시, 읽지 않은 알림 메시지의 유무 표시.
@@ -121,9 +121,18 @@
   </div>
 
 
-</details>
+<!-- </details> -->
 
 ---
+### ♾️DevOps  
+![데브옵스](https://imgur.com/Jv8Ex8Z.png)
+
+* 사용 기술
+  * Front-end : React 18, React-Router v6, MUI(UI/UX), SWR, Zustand, socket.io-client, react-kakao-maps-sdk
+  * Back-end : Spring, MyBatis, Node.js 18 & Express.js, AspectJ, SpringCrypto, AWS-Java-SDK, JavaMailSender, nodemon, aws-sdk&multer-s3, sequelize, socket.io
+  * Naver Cloud Platfrom : VPC, Server, Global DNS, Certificate Manager, Cloud DB for MySQL, Load Balancer, CDN+, ObjectStorage
+  * Tools : yarn, VITE 4, Maven, Junit, Jenkins, Docker, VS Code, Eclipse
+  * WAS : Tomcat(Spring Boot 웹 어플리케이션), NginX(Express.JS 웹 어플리케이션 리버스 프록시)
 
 ### 🏗️ 웹 아키텍쳐
 
@@ -136,11 +145,7 @@
 * Spring Boot : 채팅 외의 모든 B/L을 수행하고 클라이언트의 요청에 JSON형식의 데이터를 리턴하는 Rest API Server입니다.
 * Express.JS : 채팅에 관련된 B/L만 수행하는 Node.JS 기반의 Rest API Server 입니다.
 * DataBase : 라이선스 문제가 가장 적은 MySQL을 사용하였습니다. 
-* 적용 기술
-  * Front-end : React 18, React-Router v6, MUI(UI/UX), SWR, Zustand, socket.io-client, react-kakao-maps-sdk
-  * Back-end : Spring, MyBatis, Node.js 18 & Express.js, AspectJ, SpringCrypto, AWS-Java-SDK, JavaMailSender, nodemon, aws-sdk&multer-s3, sequelize, socket.io
-  * Tools : yarn, VITE 4, Maven, Junit, Jenkins, Docker
-  * WAS : NginX(Express.JS 서버 리버스 프록시), Tomcat9(Spring Boot 빌드 산출물 구동)
+
 
 </details>
 
@@ -167,37 +172,44 @@
 #### 2. Back-end : Spring Boot API Server  
 > 채팅 외의 모든 요청 사항을 수행하는 API Server
 
+> Spring Boot Starter 사용법 기술 공유, Spring Boot 버전 선정, 기본적인 의존성 관계 설정, Spring Boot 설계 표준 작성, 세션 및 Cors 관련 Config 설정,  
+> 커뮤니티 서브시스템 API 서버 개발(Rest Controller, Model Layer, My Batis SQL Mapper)
+
 ![백엔드사용기술스프링](https://imgur.com/kO7dqqy.png)
     
 <details>
   <summary>스프링부트 API Server 자세히 보기</summary>
 
-* 내장 WAS 라이브러리가 Tomcat 9에 의존하는 Spring Boot 2.12 버전 사용
-* 빌드 및 의존성 관리 툴로 Maven 선택
-* 데이터 베이스와 상호작용하는 SQL Mapper로 My Batis 사용
+* 내장 WAS 라이브러리가 Tomcat 9에 의존하는 Spring Boot 2.12 버전 사용.
+* 빌드 및 의존성 관리 툴로 Maven 선택.
+* 데이터 베이스와 상호작용하는 SQL Mapper로 My Batis 사용.
 * Layer 설계
   ![모델레이어](https://i.imgur.com/dyWozom.png)
-  * Model Layer를 다시 한 번 Service Layer와 Persistence Layer로 구분하였습니다.
-  * Service Layer 는 B/L에 집중하고, Persistence Layer는 DB와의 상호작용(CRUD)에 집중하도록 합니다.
-  * Control Layer 에서는 Service Layer의 Interface에 의존하게 함으로써 각 레이어간의 결합도를 떨어뜨리고 유지보수를 용이하게 합니다.
-  * 추가적으로 Control Layer 에서는 Service Layer에 의존중이므로 Model Layer가 데이터베이스와 어떻게 상호작용 하는지 세부사항에 대해 알 필요가 없게 되는 절차은닉이 일어나게 됩니다.
+  * Model Layer를 다시 한 번 Service Layer와 Persistence Layer로 구분.
+  * Persistence Layer는 DB와의 상호작용(CRUD)에 집중.
+  * Service Layer 는 Persistence Layer에 정의된 데이터베이스 상호 작용을 조합하여 B/L 수행.
+  * Control Layer 에서는 Service Layer의 Interface에 의존 -> 각 레이어간의 느슨한 결합 유지 및 코드 유지보수성 향상.
+  * Control Layer 에서는 Service Layer에 의존 중이므로 Persistence Layer와 데이터베이스간의 상호작용에 대한 절차은닉 달성.
+      
 * 시스템 알림 및 자동 채팅 메시지 발송을 위한 AOP 구성
-  [Imgur](https://i.imgur.com/5zzKr4T.png)
-  * 기존 모임 기반 모임 생성시 기존 모임 채팅방에 새 모임 참여하기 링크 자동 발송
-  * 모임 참여 신청 멤버의 정식 멤버 승격 시 참여를 신청한 회원에게 정식 멤버로 승격되었음을 알림
-  * 정식 멤버로 승격되어 채팅방 자동 입장시, 채팅방 내부 입장 알림
-  * 모임 리더가 모임 채팅방 삭제 시 채팅방이 삭제되었음을 알림
-  -> 채팅 서브시스템과 연계된 타 서브시스템과의 코드 결합도를 떨어뜨리기 위해 after handle로 weaving하여 cross concern 수행
-    
+  ![Imgur](https://i.imgur.com/5zzKr4T.png)
+  * 기존 모임 기반 모임 생성시 기존 모임 채팅방에 새 모임 참여하기 링크 자동 발송.
+  * 모임 참여 신청 멤버의 정식 멤버 승격 시 참여를 신청한 회원에게 정식 멤버로 승격되었음을 알림.
+  * 정식 멤버로 승격되어 채팅방 자동 입장시, 채팅방 내부 입장 알림.
+  * 모임 리더가 모임 채팅방 삭제 시 채팅방이 삭제되었음을 알림.
+  -> 채팅 서브시스템과 연계된 타 서브시스템과의 코드 결합도를 떨어뜨리기 위해 after handle로 weaving하여 cross concern 수행.
+
 </details>
 
 #### 3. Back-end : Express.JS API Server
 > Socket.IO를 활용, 채팅과 알림 등 클라이언트와 실시간 상호작용을 전담해서 처리하는 채팅 API Server
 
+> 서버 구성 및 모델 정의, Socket.IO NS, Room 구조 설계 개발 모두 담당.
+
 ![익스프레스서버기술](https://imgur.com/gYLtoVv.png)
 
 <details>
-  <summary>스프링부트 API Server 자세히 보기</summary>
+  <summary>Express API Server 자세히 보기</summary>
 
 * 요구사항 매핑과 비즈니스 로직 수행을 함께 하는 Router 구성
 * 데이터 베이스와의 상호작용을 위해 ORM인 Sequelize 사용
@@ -206,5 +218,16 @@
 </details>
 
 ### ☁️ Cloud Infra
+> Naver Cloud Platfrom 기반의 Cloud 구성
+> On Demand 방식으로 Infra 구성 및 확장 용이
+> SPOF(Single Point Of Failure)의 Fail Over 설정
+> 코드 취합, 빌드 배포 자동화를 위한 CI/CD 구성
+> Object Storage 관련 설정 외 모든 부분 전담
+ 
 #### 1. VPC 설계
+
 #### 2. CI/CD 구성
+
+### ✔️문제 해결 부분
+### 🔧아쉬운 점 & 개선 방향
+### 💭프로젝트 소감
