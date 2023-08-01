@@ -235,6 +235,7 @@
 * VPC IP 대역 10.0.0.0/16
 * Public Subnet 대역 10.0.1.0/24
   * 클라이언트 요구사항 별 부하 분산을 위한 2대의 Load Balancer 구성
+  * Load Balancer의 헬스 체크 및 가용성 유지로 서버 장애시의 Fail Over
   * Certificate Manager에 등록된 SSL 인증서로 Load Balancer SSL 인증
   * Web Server L/B
     * 채팅 외의 모든 업무를 처리하는 웹 서버에 부하 분산
