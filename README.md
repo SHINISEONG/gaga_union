@@ -547,7 +547,80 @@
 
 #### 3. WEB 관련 부분
 > CORS 문제 및 스프링 세션 유지 문제
+* 문제 사항 및 고려 사항
+	* 클라이언트가 스프링 서버 세션에 접근 시 인가가 제대로 이루어 지지않아 로그인 유지가 되지 않는 문제
+	* SOP(Same Origin Policy)위반 으로 인해 다른 출처(API Server)에서 오는 자원 들을 사용할 수 없는 문제
 
+* 해결 방법
+	* Spring Boot Web Server
+	  * Spring Boot에서는 환경설정을 XML과 같은 Metadata를 통해서가 아니라 Bean을 통한 코드 기반의 환경 설정 기능을 제공합니다.
+	  * @Configuration Annotation을 통해, 서버의 Web 관련 환경설정을 제어할 수 있는 WebConfig Bean을 만듭니다.
+ 		* 세션 접근 인가 문제는 WebConfig Bean에 withCredentials 헤더를 허용하는 코드를 추가함으로써 해결했습니다.
+    * SOP 위반 문제는 WebConfig Bean에 CORS(Cross Origin Resources Sharing)룰 설정을 추가함으로써 해결했습니다.
+
+      <details>
+		 	 <summary>WebConfig.Java 설정 자세히 보기</summary>
+
+```java
+
+				package com.gaga.bo.config;
+				
+				import org.springframework.context.annotation.Bean;
+				import org.springframework.context.annotation.Configuration;
+				import org.springframework.web.client.RestTemplate;
+				import org.springframework.web.servlet.config.annotation.CorsRegistry;
+				import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+				
+				//Context Package에 위치하여야한다.(당연히 와이어링을 되어야 하기때문에)
+				//Configuration Annotation을 통해 메타데이터를 설정한다. XML을 대체, 메소드기반
+				@Configuration
+				public class WebConfig implements WebMvcConfigurer {
+												//반드시 WebMvcConfigurer를 구현하고 있어야한다.
+				
+					public WebConfig() {
+						System.out.println(this.getClass());
+					}
+					
+					//Cors설정을 위해 CorsMappings 메소드를 오버라이딩한다. 
+					@Override
+					public void addCorsMappings(CorsRegistry registry) {
+											  //파라메터인 CorsRegistry클래스의 메소드를 통해 메타데이터를 설정한다.
+						registry.addMapping("/**") //Controller Mapping Path에 따라 CORS 허용/불허
+				//				.allowedOrigins("http://127.0.0.1:5173")
+								.allowedOriginPatterns("https://www.gaga.works:*") //ORIGIN URL에 따라 CORS 허용/불허
+								.allowedMethods("*") //Request 메소드에 따라 CORS 허용/불허 
+								.allowedHeaders("*") //헤더 설정에 따라 CORS 허용/불허
+								.allowCredentials(true); 
+								//<client-sever에서 withCredentials: true를 허가한다.
+					
+					}
+		
+				}
+
+```
+
+			</details>
+	 
+	* Express Chatting Server
+ 		* CORS 룰 설정을 가능케 하는 cors 모듈을 임포트 해 웹앱 설정에 추가 해 준다.
+     <details>
+			 <summary>Express CORS rule 설정 코드 자세히 보기</summary>
+	     
+			 ```javascript
+
+				app.use(
+				  cors({
+				    origin: [
+				      'https://www.gaga.works',
+				      'https://www.gaga.works:443',
+				    ],
+				    credentials: true,
+				    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+				  })
+
+       ```
+  
+     </details> 
 #### 4. 팀 워크 관련 부분
 > Front End 기술로 React 선정시 새로운 기술 적응에 대한 우려가 있는 팀원과의 소통
 
