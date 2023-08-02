@@ -141,6 +141,8 @@
 
 </details>
 
+---
+
 ### 🏗️ 웹 아키텍쳐
 
 ![웹아키텍쳐](https://imgur.com/QFAua48.png)  
@@ -192,7 +194,7 @@
 
 </details>
 
-* Spring Boot API Server Layer 설계
+#### 2-1. Spring Boot API Server Layer 설계
   ![모델레이어](https://i.imgur.com/dyWozom.png)
   
   <details>
@@ -206,7 +208,7 @@
     
   </details>
   
-* 시스템 알림 및 자동 채팅 메시지 발송을 위한 AOP 구성
+#### 2-2. 시스템 알림 및 자동 채팅 메시지 발송을 위한 AOP 구성
   ![Imgur](https://i.imgur.com/5zzKr4T.png)
   
   <details>
@@ -237,6 +239,8 @@
 * Persistence Layer에서 Sequelize 객체를 확장해 Model을 정의하고 이를 라우터에서 Import하여 사용합니다.
 
 </details>
+
+---
 
 ### ☁️ Cloud Infra
 > Naver Cloud Platfrom 기반의 Cloud 구성
@@ -300,9 +304,199 @@
   
 </details>
 
+---
+
 ### ✔️문제 해결 부분
 #### 1. 코드 관련 부분
 > 웹 어플리케이션 내부 알림 시스템 구현
+
+<details>
+  <summary>코드 관련 문제 해결 내용 보기</summary>
+
+* 고려 사항
+  * 실시간성  : 회원은 실시간으로 알림을 받을 수 있어야 한다.  
+  * 디커플링  : 다른 서브 시스템의 코드에 간섭 없이 구현해야 한다.  
+  * 재 사용성 : 이미 Express로 구현해 놓은 메시지 발송 API를 최대한 재사용해야 한다.  
+  * 부가 기능 : 알림과 관련된 페이지가 있을 경우 클릭시 알림과 관련된 페이지 조회를 할 수 있어야 한다.
+    
+* 해결 방법
+  * 유저끼리 Direct Message를 주고받을 경우 반드시 송, 수신자가 존재하기에 송신자가 Null일 경우 시스템 메시지로 간주하도록 설계했습니다.
+  * 1번 문제는 3번 고려사항을 충족하면 Socket.io를 사용해 클라이언트와 통신하게 되기 때문에 실시간성은 무난하게 해결되는 문제였습니다.
+  * 3번 문제는 Spring에서 다른 OpenAPI를 이용할 때처럼 HTTP프로토콜에 맞춰 헤더와 엔티티를 조립 후 요청만 보내면 되는 것이기에 간단히 해결됐습니다.
+  * 4번 문제를 해결하기 위해 direct_messages 테이블에 라우팅 경로를 나타내는 path 칼럼을 추가하였습니다.
+  * 2번 문제를 해결하기 위해 스프링 AOP를 떠올렸습니다.
+    * 고객의 요청에 따라 Model Layer와 상호작용하여 데이터를 조작하는 부분은 모두 Spring Rest Controller에서 처리합니다.
+    * 알림을 발송해야 하는 상황을 처리하는 Rest Controller Method가 성공적으로 수행됐을 경우 After Handle로 Weaving하여 알림을 발송하면 타 시스템과의 결합도를 낮출 수 있을 것이라 판단했습니다.
+
+  <details>
+  <summary>AOP 코드 보기</summary>
+
+  ```java
+  package com.gaga.bo.aop;
+
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import com.gaga.bo.service.club.ClubService;
+import com.gaga.bo.service.domain.Club;
+import com.gaga.bo.service.domain.Meeting;
+import com.gaga.bo.service.domain.User;
+import com.gaga.bo.service.meeting.MeetingService;
+import com.gaga.bo.service.user.UserService;
+
+@Aspect
+@Component
+public class AlarmAspect {
+	
+	///field
+	@Value("${expressHost}")
+	private String expressHost;
+	
+	@Autowired
+	@Qualifier("userServiceImpl")
+	private UserService userService;
+	
+	@Autowired
+	@Qualifier("clubServiceImpl")
+	private ClubService clubService;
+	
+	@Autowired
+	@Qualifier("meetingServiceImpl")
+	private MeetingService meetingService;
+	
+	
+	public AlarmAspect() {
+	
+		System.out.println(this.getClass());
+	
+	}
+	
+	@SuppressWarnings("unchecked")
+	@AfterReturning(pointcut = "execution(* com.gaga.bo.web..*.updateMember(..))", returning = "result")
+	public void afterMemberUpdate(JoinPoint joinPoint, Object result) throws Exception {
+		System.out.println(" :: afterMemberUpdate ::");
+		Object[] args = joinPoint.getArgs();
+		
+		Map<String,String> member = (Map<String,String>) args[0];
+		Map<String, Object> alarmReq = new HashMap<String,Object>();
+		Map<String, Object> groupChatReq = new HashMap<String,Object>();
+		
+		String alarmUrl = expressHost+"/rest/chat/alarm";
+		String groupChatUrl = expressHost+"/rest/chat";
+
+		User user = userService.getUser(Integer.parseInt(member.get("userNo")));
+		
+		alarmReq.put("receiverNo",member.get("userNo"));
+
+		
+		groupChatReq.put("content", user.getNickName()+"님이 입장하셨습니다.");
+		groupChatReq.put("contentTypeNo", 101);
+		
+		if(member.get("meetingNo") != null) {
+			Meeting meeting = meetingService.getMeeting(Integer.parseInt(member.get("meetingNo")));
+			alarmReq.put("content", meeting.getMeetingName()+"모임의 확정 멤버가 되었습니다.");
+			alarmReq.put("path","/meeting/meetingno/" + meeting.getMeetingNo());
+			
+			groupChatReq.put("groupNo", member.get("meetingNo"));
+			groupChatUrl=groupChatUrl+"/meeting/message";
+		} else {
+			Club club = clubService.getClub(Integer.parseInt(member.get("clubNo")));
+			alarmReq.put("content", club.getClubName()+"클럽의 확정 멤버가 되었습니다.");
+			alarmReq.put("path","/club/no/" + club.getClubNo());
+			
+			groupChatReq.put("groupNo", member.get("clubNo"));
+			groupChatUrl=groupChatUrl+"/club/message";
+
+		}
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Map<String, Object>> alarmEntity = new HttpEntity<Map<String, Object>>(alarmReq, headers);
+        HttpEntity<Map<String, Object>> groupChatEntity = new HttpEntity<Map<String, Object>>(groupChatReq, headers);
+        
+        ResponseEntity<String> alarmResponse = restTemplate.postForEntity(alarmUrl, alarmEntity, String.class);
+        ResponseEntity<String> groupChatResponse = restTemplate.postForEntity(groupChatUrl, groupChatEntity, String.class);
+
+        System.out.println(" :: 확정 멤버 aop :: ararmRes :: "+alarmResponse.getBody());
+        System.out.println(" :: 확정 멤버 aop :: groupChatRes :: "+groupChatResponse.getBody());
+
+	}
+	
+	@AfterReturning(pointcut = "execution(* com.gaga.bo.web..*.addMeeting(..))", returning = "result")
+	public void afterAddMeeting(JoinPoint joinPoint, Object result ) throws Exception {
+		System.out.println(" :: afterAddMeeting ::");
+		Object[] args = joinPoint.getArgs();
+		
+		Meeting argMeeting = (Meeting)args[0];
+
+		
+		Meeting meeting = meetingService.getMeeting((Integer)result);
+		String groupChatUrl = expressHost+"/rest/chat";
+		
+		System.out.println(" :: result meetingNo :: " + (Integer)result);
+		System.out.println(" :: meeting :: " + meeting);
+		
+		Map<String, Object> req = new HashMap<String,Object>();
+        
+		if (argMeeting.getParentClubNo() != 0) {
+			
+			groupChatUrl += "/club/message";
+			meeting.setParentClubNo(argMeeting.getParentClubNo());
+			req.put("groupNo", meeting.getParentClubNo());
+			
+		} else if (argMeeting.getParentMeetingNo() != 0 ) {
+			
+			groupChatUrl += "/meeting/message";
+			meeting.setParentMeetingNo(argMeeting.getParentMeetingNo());
+			req.put("groupNo", meeting.getParentMeetingNo());
+			
+		}
+		
+		if(meeting.getParentClubNo() != 0 || meeting.getParentMeetingNo() != 0) {
+			
+			System.out.println(groupChatUrl);
+			
+			req.put("senderNo", meeting.getMeetingLeaderNo());
+			req.put("content", meeting);
+			req.put("contentTypeNo", 102);
+			RestTemplate restTemplate = new RestTemplate();
+					
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			
+			HttpEntity<Map<String, Object>> groupChatEntity = new HttpEntity<Map<String, Object>>(req, headers);
+	        ResponseEntity<String> groupChatRes = restTemplate.postForEntity(groupChatUrl, groupChatEntity, String.class);
+	                
+	        System.out.println(" :: 타 모임 기반 aop :: res :: " + groupChatRes.getBody());
+		}
+	}
+
+}
+
+  ```
+
+  </details>
+  
+</details>
 
 #### 2. 인프라 관련 부분
 > Load Balancer에 SSL 인증시 Target Group 설정
@@ -313,11 +507,17 @@
 #### 4. 팀 워크 관련 부분
 > Front End 기술로 React 선정시 새로운 기술 적응에 대한 우려가 있는 팀원과의 소통
 
+
+
 ### 🔧아쉬운 점 및 추가하고 싶은 기능
 #### 1. 보안
 #### 2. Chatting Server의 Load Balancing 및 Auto Scaling Issues
 #### 3. ERD 설계시 chat_room_table 삭제
 #### 4. CI/CD시 일시적인 서비스 중단 문제
 #### 5. Web RTC를 활용한 화상 채팅
+
+### 📊프로젝트 기여도
+#### 1. 객관적 기여도
+#### 2. 주관적 기여도
 
 ### 💭프로젝트 소감 및 의의
