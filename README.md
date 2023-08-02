@@ -223,7 +223,6 @@
     
   </details>
 
-#### 2-3. Class Diagram
 
 #### 3. Back-end : Express.JS API Server
 > Socket.IO를 활용, 채팅과 알림 등 클라이언트와 실시간 상호작용을 전담해서 처리하는 채팅 API Server
@@ -246,7 +245,7 @@
 ### ☁️ Cloud Infra
 > Naver Cloud Platfrom 기반의 Cloud 구성
 > On Demand 방식으로 Infra 구성 및 확장 용이
-> SPOF(Single Point Of Failure)의 Fail Over 설정
+> SPOF(Single Point Of Failure)에 대한 Fail Over 설정
 > 코드 취합, 빌드 배포 자동화를 위한 CI/CD 구성
 
 > Object Storage 관련 설정 외 모든 VPC, CI/CD 설계 및 구성 전담
@@ -652,23 +651,58 @@
 
 ### 🔧아쉬운 점 및 추가하고 싶은 기능
 #### 1. 토큰 방식 인증, 인가
+<details>
+	<summary>자세히 보기</summary>
+ 
 * 선정 이유
 	* 전통적인 Session 방식이 아닌 최근 인증과 인가에 많이 사용되는 JWT를 사용해 보고싶어 적용해 보고 싶습니다.
 	* 또, JWT의 보안 문제들을 해결할 수 있는 여러 방안들에 대해 고민하고 적용해 보고 싶습니다.
-* 해당 지식 습득을 위한 키워드 : JWT, Authentication(인증), Authorization(인가, 권한 부여)
+* 추후 관련 지식 습득을 위한 키워드 : JWT, Authentication(인증), Authorization(인가, 권한 부여)
+	
+</details>
   
 #### 2. Chatting Server의 Load Balancing 및 Auto Scaling Issues
+<details>
+	<summary>자세히 보기</summary>
+	
 * 선정 이유
-	* VPC 구조도에서 Chatting Server 그룹군의 경우 Load Balancer 하위에 하나이 서버만 존재하고 Auto Scailing도 지원되지 않습니다.
+	* VPC 구조도에서 Chatting Server 그룹군의 경우 Load Balancer 하위에 하나의 서버만 존재하고 Auto Scailing도 지원되지 않습니다.
  	* 이는 Socket.io에서 관리하는 NameSpace와 Room들이 전부 서버마다 별도 할당 되기 때문에, 유저간 채팅 기능에 문제가 발생하기 때문입니다.
  	* 해결 방안은 찾았으나 메인 프로젝트시 한정된 시간 문제로 끝내 개선시키지 못했기에 많은 아쉬움이 남아서 선택했습니다.
 * 개선 방향
  	* 해결책은 Redis를 사용하여 Socket.io를 클러스터 모드로 작동 시키고 분할된 서버들이 통합된 공간의 NameSpace와 Room에 접근하도록 하는 것 입니다.
-* 해당 지식 습득을 위한 키워드 : Redis, Socket.IO Cluster
+* 추후 관련 지식 습득을 위한 키워드 : Redis, Socket.IO Cluster
+
+</details>
    
-#### 3. ERD 설계시 chat_room_table 삭제
+#### 3. ERD 설계시 chat_rooms Table 삭제
+<details>
+	<summary>자세히 보기</summary>
+	
+* 선정 이유
+	* 분석/설계 단계에서 채팅방 제목은 모임명과 같게하고 채팅방 멤버는 모임 멤버와 같도록 설계하였기에 chat_rooms와 meetings, clubs가 겹치는 attribute가 많아 굳이 Table을 따로 둘 필요가 없다고 판단하였습니다.
+ 	* 하지만 최근 메시지 도착 시간이나, 최근 메시지 내용 등 chat_rooms만이 가지는 attribute들이 구현 단계에서 많이 발견되었기 때문에 meetings Table과 clubs Table과 무관한 last_message 칼럼과 last_message_time 칼럼을 추가하게 되었습니다.
+	* 이와 같은 설계는 정규화가 제대로 이루어지지 않은 설계이기 때문에 아쉬운 부분으로 선정하였습니다.
+* 개선 방향
+	* chat_rooms 테이블을 정의하고 해당 테이블에 채팅 방과 관련된 속성들을 칼럼으로 정의.
+* 추후 관련 지식 습들을 위한 키워드 : 분석/설계, 추상화, 데이터 베이스 설계 등
+
+</details>
 
 #### 4. CI/CD시 일시적인 서비스 중단 문제
+<details>
+	<summary>자세히 보기</summary>
+
+* 선정 이유
+	* 로드 밸런서를 통한 배포가 아닌 직접 타겟 그룹들에 접근하여 배포를 진행하기 때문에, 롤링 업데이트가 일어나지 않고 일시적으로 서비스가 중단되는 문제가 있었습니다.
+	* Maven 빌드 후 war파일을 먼저 배포한 후 2번 트리거에서 번들링된 react코드가 spring web app의 static 리소스 폴더로 배포될때까지 서비스 중단이 일어나는 문제가 있습니다.
+	* Auto-Scale에 의해 생성된 서버들의 경우 새로운 배포판이 적용되지 않는 문제가 있습니다.
+* 개선 방향
+	* Elastic Load Balancer 혹은 Application LOad Balancer 등을 통한 롤링 업데이트가 일어 날 수 있도록 빌드 배포 과정을 NCP나 AWS와 같은 Cloud 회사에서 제공하는 CI/CD 프로세스를 학습하고 적용합니다.
+* 추후 관련 지식 습득을 위한 키워드 : LoadBalancer, 무중단 배포, 롤링 업데이트, Jenkins, CI/CD 등
+  
+</details>
+
 #### 5. Web RTC를 활용한 화상 채팅
 
 ### 📊프로젝트 기여도
