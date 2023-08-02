@@ -203,7 +203,7 @@
   * Model Layer를 다시 한 번 Service Layer와 Persistence Layer로 구분하였습니다.
   * 이러한 설계로 인해 Persistence Layer는 DB와의 상호작용(CRUD)에만 집중할 수 있습니다.
   * Service Layer 는 Persistence Layer에 정의된 데이터베이스 상호 작용을 조합하여 B/L을 수행합니다.
-  * Control Layer 에서는 Service Layer의 Interface에 의존 -> 각 레이어간의 결합도를 떨어뜨리고 및 코드 유지보수를 용이하게 합니다.
+  * Control Layer 에서는 Service Layer의 Interface에 의존 -> 각 레이어간의 결합도를 떨어뜨리고 유지보수를 용이하게 합니다.
   * Control Layer 에서는 Service Layer에 의존 중이므로 Persistence Layer와 데이터베이스간의 상호작용에 대한 절차은닉이 일어납니다.
     
   </details>
@@ -292,7 +292,7 @@
      
 * React 코드 번들링 및 배포 과정(Item 2)
   1. React 코드와 Express 코드가 저장된 Github Repo에서 코드를 클론해 옵니다.
-  2. yarn build 명령어를 사용 VITE의 번들링 툴인 ESBuild를 사용하여 번들링 합니다.
+  2. yarn build 명령어를 사용 VITE의 프로덕션 빌드 번들링 툴인 RollUp을 사용하여 번들링 합니다.
   3. Publish Over SSH Plug-In을 사용하여 번들링 결과물을 Web Server의 스태틱 리소스 디렉토리로 복사하여 Welcome Page로 설정합니다.
      (Web Server의 8022번 포트로 접근 시 tomcat 도커 컨테이너의 22번 포트로 연결됩니다.)
     
@@ -500,6 +500,51 @@
 #### 2. 인프라 관련 부분
 > Load Balancer에 SSL 인증시 Target Group 설정
 
+<details>
+  <summary>인프라 관련 문제 해결 내용 보기</summary>
+	
+* 문제 사항 및 고려 사항
+	* 클라이언트에서 로드 밸런서 까지는 HTTPS 프로토콜로 통신이 가능하나 로드 밸런서와 타겟 그룹간 HTTP 통신이 불가하였다.
+  * 추가적인 SSL 인증서 발급이나 도메인 발급 없이 Load Balancer 하단의 서버 그룹군 과는 HTTP 통신이 가능하게 해야 한다.
+    
+* 해결 방법
+	* 타겟 그룹에 X-Fowarded-proto 관련 설정을 해 주어야 로드 밸런서에서 헤더에 추가한 X-Forwarded-proto를 파싱하여 HTTPS / HTTP 프로토콜 별 대응이 가능하다.
+	* Tomcat 서버의 경우 server.xml에 다음과 같은 설정을 추가 한다.
+
+		 <details>
+		  <summary>server.xml 설정 자세히 보기</summary>  
+			 
+		  
+		  <Connector port="8080" protocol="HTTP/1.1"
+		             connectionTimeout="20000"
+		             redirectPort="8443" 
+		             scheme="https" secure="true" proxyPort="443"
+		             xpoweredBy="true" server="Apache" />
+		  
+		
+		 </details>
+
+  	* Express 서버의 경우 리버스 프록시 설정이 된 NginX의 default.conf 파일 Server의 Location 부분에 다음과 같은 설정을 추가 한다.
+
+		<details>
+		  <summary>default.conf 설정 자세히 보기</summary>
+		
+		
+		  location / {
+		               proxy_http_version 1.1;
+		               proxy_set_header Upgrade $http_upgrade;
+		               proxy_set_header Connection 'upgrade';
+		               proxy_set_header Host $host;
+		               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+			           proxy_set_header X-Forwarded-Proto $scheme;
+		               # proxy_set_header X-Forwarded-By $server_addr
+		               proxy_pass http://express:8909;
+		               proxy_cache_bypass $http_upgrade;
+			}
+		
+		</details>
+</details>
+
 #### 3. WEB 관련 부분
 > CORS 문제 및 스프링 세션 유지 문제
 
@@ -509,7 +554,7 @@
 
 
 ### 🔧아쉬운 점 및 추가하고 싶은 기능
-#### 1. 보안
+#### 1. 토큰 방식 인가 절차 
 #### 2. Chatting Server의 Load Balancing 및 Auto Scaling Issues
 #### 3. ERD 설계시 chat_room_table 삭제
 #### 4. CI/CD시 일시적인 서비스 중단 문제
