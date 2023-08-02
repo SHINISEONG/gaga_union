@@ -25,7 +25,7 @@
 ### 💼프로젝트 산출물  
 
 * 소스 코드  
-  [Github - https://github.com/SHINISEONG/gaga_union](https://github.com/SHINISEONG/gaga_union)
+[Github - https://github.com/SHINISEONG/gaga_union](https://github.com/SHINISEONG/gaga_union)
 
 * 프로젝트 발표 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/-J3Eb-AVBCs/0.jpg)](https://youtu.be/-J3Eb-AVBCs)
