@@ -223,6 +223,7 @@
     
   </details>
 
+#### 2-3. Class Diagram
 
 #### 3. Back-end : Express.JS API Server
 > Socket.IO를 활용, 채팅과 알림 등 클라이언트와 실시간 상호작용을 전담해서 처리하는 채팅 API Server
@@ -303,6 +304,10 @@
 * Item 1 실행시 Item 2가 자동 실행되도록 트리거 설정을 해두었습니다.
   
 </details>
+
+---
+
+### 💽ERD
 
 ---
 
@@ -547,6 +552,10 @@
 
 #### 3. WEB 관련 부분
 > CORS 문제 및 스프링 세션 유지 문제
+
+<details>
+	<summary>WEB 관련 문제 해결 자세히 보기</summary>
+ 
 * 문제 사항 및 고려 사항
 	* 클라이언트가 스프링 서버 세션에 접근 시 인가가 제대로 이루어 지지않아 로그인 유지가 되지 않는 문제
 	* SOP(Same Origin Policy)위반 으로 인해 다른 출처(API Server)에서 오는 자원 들을 사용할 수 없는 문제
@@ -559,7 +568,7 @@
 	  * SOP 위반 문제는 WebConfig Bean에 CORS(Cross Origin Resources Sharing)룰 설정을 추가함으로써 해결했습니다.
 
 		<details>
-		<summary>WebConfig.Java 설정 자세히 보기</summary>
+		<summary>WebConfig.Java 설정 코드 자세히 보기</summary>
 		
 		```java
 		
@@ -571,7 +580,7 @@
 		import org.springframework.web.servlet.config.annotation.CorsRegistry;
 		import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 		
-		//Context Package에 위치하여야한다.(당연히 와이어링을 되어야 하기때문에)
+		//Context Package에 위치하여야한다.(당연히 와이어링이 되어야 하기때문에)
 		//Configuration Annotation을 통해 메타데이터를 설정한다. XML을 대체, 메소드기반
 		@Configuration
 		public class WebConfig implements WebMvcConfigurer {
@@ -620,15 +629,45 @@
 			```
 			
 			</details> 
+   </details>
 #### 4. 팀 워크 관련 부분
 > Front End 기술로 React 선정시 새로운 기술 적응에 대한 우려가 있는 팀원과의 소통
 
+<details>
+	<summary>팀 워크 관련 문제 해결 자세히 보기</summary>
+ 
+* 문제 사항 및 고려 사항
+	* 네이티브 앱 처럼 동작하는 웹 구현을 위해 팀 프로젝트의 FrontEnd기술로 CSR과 SPA를 지원하는 프레임워크인 React 사용 필요
+	* 정규 수업시간에 배운 전통적인 MVC패턴 구현을 위한 기술 스택인 JSP, SPRING BOOT에 아직 어려움을 겪고 있던 팀 원 한 분은 새로운 기술 습득 및 적용에 대한 부담이 우려되는 상황
+
+* 해결 방법
+	* 조금 더 늦게까지 남거나 주말간 코딩을 진행하여 저에게 할당된 분량을 먼저 빠르게 처리하였습니다.
+	* 그 후 react 기본 hooks, 라이브러리 주요 사용법 등에 관한 예시 코드를 작성하고, 지식을 공유하였습니다.
+	* 너무 어려워 하는 부분들은 기술 지원 후 보충 설명을 진행하였습니다.
+	* 위 과정들을 통해 팀 원들이 새 기술에 적응 할 수 있다는 생각을 할 수 있도록 장려하였습니다.
+	* 결과적으로 저희 팀은 기술에 익숙한 한 사람이 코드를 작성하는 것이, 아닌 각자의 서브시스템에서 백 엔드 부터 프론트 엔드 기술까지 맡은 바 역할을 다 할 수 있었다고 생각합니다.
+   
+</details>
 
 
 ### 🔧아쉬운 점 및 추가하고 싶은 기능
-#### 1. 토큰 방식 인가 절차 
+#### 1. 토큰 방식 인증, 인가
+* 선정 이유
+	* 전통적인 Session 방식이 아닌 최근 인증과 인가에 많이 사용되는 JWT를 사용해 보고싶어 적용해 보고 싶습니다.
+	* 또, JWT의 보안 문제들을 해결할 수 있는 여러 방안들에 대해 고민하고 적용해 보고 싶습니다.
+* 해당 지식 습득을 위한 키워드 : JWT, Authentication(인증), Authorization(인가, 권한 부여)
+  
 #### 2. Chatting Server의 Load Balancing 및 Auto Scaling Issues
+* 선정 이유
+	* VPC 구조도에서 Chatting Server 그룹군의 경우 Load Balancer 하위에 하나이 서버만 존재하고 Auto Scailing도 지원되지 않습니다.
+ 	* 이는 Socket.io에서 관리하는 NameSpace와 Room들이 전부 서버마다 별도 할당 되기 때문에, 유저간 채팅 기능에 문제가 발생하기 때문입니다.
+ 	* 해결 방안은 찾았으나 메인 프로젝트시 한정된 시간 문제로 끝내 개선시키지 못했기에 많은 아쉬움이 남아서 선택했습니다.
+* 개선 방향
+ 	* 해결책은 Redis를 사용하여 Socket.io를 클러스터 모드로 작동 시키고 분할된 서버들이 통합된 공간의 NameSpace와 Room에 접근하도록 하는 것 입니다.
+* 해당 지식 습득을 위한 키워드 : Redis, Socket.IO Cluster
+   
 #### 3. ERD 설계시 chat_room_table 삭제
+
 #### 4. CI/CD시 일시적인 서비스 중단 문제
 #### 5. Web RTC를 활용한 화상 채팅
 
