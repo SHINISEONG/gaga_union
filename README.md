@@ -327,6 +327,7 @@
   * 2번 문제를 해결하기 위해 스프링 AOP를 떠올렸습니다.
     * 고객의 요청에 따라 Model Layer와 상호작용하여 데이터를 조작하는 부분은 모두 Spring Rest Controller에서 처리합니다.
     * 알림을 발송해야 하는 상황을 처리하는 Rest Controller Method가 성공적으로 수행됐을 경우 After Handle로 Weaving하여 알림을 발송하면 타 시스템과의 결합도를 낮출 수 있을 것이라 판단했습니다.
+    * 채팅 API 서버를 재사용 하기 위해 HTTP Req Template을 조립하여 채팅 서버에 API 요청을 보냅니다.
 
   <details>
   <summary>AOP 코드 보기</summary>
