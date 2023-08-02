@@ -24,6 +24,9 @@
 
 ### 💼프로젝트 산출물  
 
+* 소스 코드
+[Github - https://github.com/SHINISEONG/gaga_union](https://github.com/SHINISEONG/gaga_union)
+
 * 프로젝트 발표 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/-J3Eb-AVBCs/0.jpg)](https://youtu.be/-J3Eb-AVBCs)
 <pre>
@@ -729,24 +732,30 @@
 ### 📊프로젝트 기여도
 #### 1. 객관적 기여도
 * Commit 기여도 : 37.4%
-* 기여 커밋 수 : 166 / 443 Commits
-* Code Line 및 언어별 기여도 Info Graphic
+* 기여 Commit 수 : 166 / 443 Commits
+* Code Line 기여도 : 27.6%
+* 기여 Line 수 : 155844 / 564592 Lines
+  
+* 기여도 Info Graphic
   ![Imgur](https://i.imgur.com/pyUBT8h.png)
   ![Imgur](https://i.imgur.com/HxqWhUP.png)
       
 #### 2. 주관적 기여도
 * 객관적 기여도 외 +8%
-* 기술 지원
-* 기술 공유
-	* 객체지향 개념
-	* Spring Framework Model 2 Archtecture MVC 개념
-	* React Virtual DOM과 State, 기본 Hooks 사용법, Custom Hooks 제작법 등
-	* Spring Boot 프로젝트 구성 방법
-	* 각종 라이브러리 사용 방법 및 예시 코드 제공
-* 개발 환경 구성
-	* Spring Boot
- 	* React
-	* Express
+* 주관적 기여도에 대한 근거사항
+	* 기술 표준 선정
+	* 설계 표준 작성
+	* 기술 지원
+	* 기술 공유
+		* 객체지향 개념
+		* Spring Framework Model 2 Archtecture MVC 개념
+		* React Virtual DOM과 State, 기본 Hooks 사용법, Custom Hooks 제작법 등
+		* Spring Boot 프로젝트 구성 방법
+		* 각종 라이브러리 사용 방법 및 예시 코드 제공
+	* 개발 환경 구성
+		* Spring Boot
+	 	* React
+		* Express
 
 ### 💭프로젝트 소감 및 의의
 * 개인 Mini 프로젝트만 구현하다가 처음으로 해본 팀 프로젝트였습니다.
