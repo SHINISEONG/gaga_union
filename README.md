@@ -250,7 +250,7 @@
 ![VPC설계](https://imgur.com/MypY9iO.png)
 
 <details>
-  <summary>Express API Server 자세히 보기</summary>
+  <summary>VPC 구성 자세히 보기</summary>
   
 * VPC IP 대역 10.0.0.0/16
 * Public Subnet 대역 10.0.1.0/24
@@ -278,6 +278,46 @@
 ![CICD구성](https://imgur.com/fIMMCz0.png)
 
 <details>
-  <summary>제
+  <summary>CI/CD 구성 자세히 보기</summary>
 
-### 💭프로젝트 소감
+* Web Server 빌드 및 배포 과정(Item 1)
+  1. Spring Boot 소스 코드가 저장된 Github Repo에서 코드를 클론해 옵니다.
+  2. Maven을 사용해 빌드 합니다.
+  3. 산출된 ~.war 파일을 Tomcat 자체 지원 웹 어플리케이션인 Tomcat Manager를 사용해 배포합니다.
+  4. Context Root를 /로 설정하여 ROOT.war 형태로 배포되도록 합니다.
+     
+* React 코드 번들링 및 배포 과정(Item 2)
+  1. React 코드와 Express 코드가 저장된 Github Repo에서 코드를 클론해 옵니다.
+  2. yarn build 명령어를 사용 VITE의 번들링 툴인 ESBuild를 사용하여 번들링 합니다.
+  3. Publish Over SSH Plug-In을 사용하여 번들링 결과물을 Web Server의 스태틱 리소스 디렉토리로 복사하여 Welcome Page로 설정합니다.
+     (Web Server의 8022번 포트로 접근 시 tomcat 도커 컨테이너의 22번 포트로 연결됩니다.)
+    
+* Chatting Server 빌드 및 배포 과정(Item 2)
+  1. React 코드와 Express 코드가 저장된 Github Repo에서 코드를 클론해 옵니다.
+  2. Publish OVer SSH Plug-In을 사용 하여 Express 코드를 Node.JS 도커 컨테이너로 복사합니다. Nodemon에 의해 코드 변경시 Express 웹 어플리케이션이 재구동 됩니다.
+
+* Item 1 실행시 Item 2가 자동 실행되도록 트리거 설정을 해두었습니다.
+  
+</details>
+
+### ✔️문제 해결 부분
+#### 1. 코드 관련 부분
+> 웹 어플리케이션 내부 알림 시스템 구현
+
+#### 2. 인프라 관련 부분
+> Load Balancer에 SSL 인증시 Target Group 설정
+
+#### 3. WEB 관련 부분
+> CORS 문제 및 스프링 세션 유지 문제
+
+#### 4. 팀 워크 관련 부분
+> Front End 기술로 React 선정시 새로운 기술 적응에 대한 우려가 있는 팀원과의 소통
+
+### 🔧아쉬운 점 및 추가하고 싶은 기능
+#### 1. 보안
+#### 2. Chatting Server의 Load Balancing 및 Auto Scaling Issues
+#### 3. ERD 설계시 chat_room_table 삭제
+#### 4. CI/CD시 일시적인 서비스 중단 문제
+#### 5. Web RTC를 활용한 화상 채팅
+
+### 💭프로젝트 소감 및 의의
