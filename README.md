@@ -4,12 +4,12 @@
 
 
 ### 📱웹 앱 소개  
-가치, 가자 - 국내의 오프라인 모임을 지원하는 온라인 플랫폼 가가.  
-가가는 회원가입시 인증 절차를 통해 신원이 확실한 사람들의 안전한 모임을 지원하는 모임 지원 플랫폼 입니다.  
-여러 모임 리더들의 모임 주최 내역과 리뷰를 확인하여 마음에 드는 모임에 참여하거나, 직접 모임의 장소, 날짜, 목적을 정해 모임을 주최해 보세요.  
-모임을 만들고 자신의 재능을 제공하여 수익을 창출할 수도 있습니다.  
-또 마음과 취향이 맞는 사람들과 클럽이라는 온라인 공간에서 지속적인 모임을 가져 볼 수도 있어요.  
-마지막으로, 가가는 내부 채팅을 지원하기 때문에 전화번호나, 카카오톡 ID와 같은 프라이빗한 정보 공개의 부담없이 소통을 이어가실 수 있습니다.  
+> 가치, 가자 - 국내의 오프라인 모임을 지원하는 온라인 플랫폼 가가.  
+* 가가는 회원가입시 인증 절차를 통해 신원이 확실한 사람들의 안전한 모임을 지원하는 모임 지원 플랫폼 입니다.  
+* 여러 모임 리더들의 모임 주최 내역과 리뷰를 확인하여 마음에 드는 모임에 참여하거나, 직접 모임의 장소, 날짜, 목적을 정해 모임을 주최해 보세요.  
+* 모임을 만들고 자신의 재능을 제공하여 수익을 창출할 수도 있습니다.  
+* 또 마음과 취향이 맞는 사람들과 클럽이라는 온라인 공간에서 지속적인 모임을 가져 볼 수도 있어요.  
+* 마지막으로, 가가는 내부 채팅을 지원하기 때문에 전화번호나, 카카오톡 ID와 같은 프라이빗한 정보 공개의 부담없이 소통을 이어가실 수 있습니다.  
 
 ➕ 주요 기능
 <pre>
@@ -34,11 +34,11 @@
 * GAGA 시연 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/Z6uKVdweKa0/0.jpg)](https://youtu.be/Z6uKVdweKa0)
      
-* [프로젝트 기술서](https://drive.google.com/file/d/12P-sJh_LBGfpdKDXpJZ0g6W9TEA003dw/view?usp=drive_link)   
 * [프로젝트 보고서](https://acrobat.adobe.com/link/review?uri=urn%3Aaaid%3Ascds%3AUS%3Ad361e49b-10db-41c1-a09c-3329c2863099)  
      - 프로젝트 개요 : 시스템 개요, 업무 영역, 예상 효과, 기술적 고려사항, 개발 이력, Architectures  
      - 분석 산출물 : Use Case Modeling, Application Modeling, 화면분석, 데이터분석  
      - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석
+       
 ### 👤역할 및 담당 업무
 - 팀장: 기술 표준 선택, 설계 표준 작성, 개발 일정 관리, 기술 지원  
 - React, Express Git 관리자 : React, Express 개발 환경 구성 및 Source 관리, Spring Boot 개발 환경 구성  
@@ -125,7 +125,9 @@
 <!-- </details> -->
 
 ---
+
 ## ♾️DevOps
+
 ![데브옵스](https://imgur.com/Jv8Ex8Z.png)
 
 <details>
@@ -208,7 +210,7 @@
   ![Imgur](https://i.imgur.com/5zzKr4T.png)
   
   <details>
-  <summary>시스템 알림설명 자세히 보기</summary>
+  <summary>시스템 알림 설명 자세히 보기</summary>
     
   > 기존 모임 기반 모임 생성시 기존 모임 채팅방에 새 모임 참여하기 링크를 자동 발송.  
   > 모임 참여 신청 멤버의 정식 멤버 승격 시 참여를 신청한 회원에게 정식 멤버로 승격되었음을 알림.  
@@ -230,8 +232,8 @@
 <details>
   <summary>Express API Server 자세히 보기</summary>
 
-* 요구사항 매핑과 비즈니스 로직 수행을 함께 하는 Router 구성하였습니다.
-* 데이터 베이스와의 상호작용을 위해 ORM인 Sequelize 사용합니다.
+* 요구사항 매핑과 비즈니스 로직 수행을 함께 하는 Router를 구성하였습니다.
+* 데이터 베이스와의 상호작용을 위해 ORM인 Sequelize를 사용합니다.
 * Persistence Layer에서 Sequelize 객체를 확장해 Model을 정의하고 이를 라우터에서 Import하여 사용합니다.
 
 </details>
@@ -247,6 +249,9 @@
 #### 1. VPC 구성
 ![VPC설계](https://imgur.com/MypY9iO.png)
 
+<details>
+  <summary>Express API Server 자세히 보기</summary>
+  
 * VPC IP 대역 10.0.0.0/16
 * Public Subnet 대역 10.0.1.0/24
   * 클라이언트 요구사항 별 부하 분산을 위한 2대의 Load Balancer 구성하였습니다.
@@ -266,11 +271,13 @@
   * 보안이 중요한 Cloud DB for MySQL을 운용 중 입니다.
 * VPC 외부
   * CI/CD를 위한 Jenknis Server를 운용 중 입니다.
+
+</details>
+
 #### 2. CI/CD 구성
+![CICD구성](https://imgur.com/fIMMCz0.png)
 
-### ✔️문제 해결 부분
-#### 1. 코드 관련 부분
-#### 2. 인프라 관련 부분
+<details>
+  <summary>제
 
-### 🔧아쉬운 점 & 개선 방향
 ### 💭프로젝트 소감
