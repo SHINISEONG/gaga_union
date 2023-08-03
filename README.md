@@ -42,6 +42,11 @@
 * 소스 코드  
 [Github - https://github.com/SHINISEONG/gaga_union](https://github.com/SHINISEONG/gaga_union)
 
+* [프로젝트 보고서](https://acrobat.adobe.com/link/review?uri=urn%3Aaaid%3Ascds%3AUS%3Ad361e49b-10db-41c1-a09c-3329c2863099)  
+     - 프로젝트 개요 : 시스템 개요, 업무 영역, 예상 효과, 기술적 고려사항, 개발 이력, Architectures  
+     - 분석 산출물 : Use Case Modeling, Application Modeling, 화면분석, 데이터분석  
+     - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석
+       
 * 프로젝트 발표 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/-J3Eb-AVBCs/0.jpg)](https://youtu.be/-J3Eb-AVBCs)
 <pre>
@@ -49,13 +54,11 @@
   개발 의도 : 00:00:55 ~ 00:05:10
   기술 소개 : 00:21:12 ~ 00:28:40
 </pre>
+
 * GAGA 시연 영상  
 [![Video Thumbnail](http://img.youtube.com/vi/Z6uKVdweKa0/0.jpg)](https://youtu.be/Z6uKVdweKa0)
      
-* [프로젝트 보고서](https://acrobat.adobe.com/link/review?uri=urn%3Aaaid%3Ascds%3AUS%3Ad361e49b-10db-41c1-a09c-3329c2863099)  
-     - 프로젝트 개요 : 시스템 개요, 업무 영역, 예상 효과, 기술적 고려사항, 개발 이력, Architectures  
-     - 분석 산출물 : Use Case Modeling, Application Modeling, 화면분석, 데이터분석  
-     - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석
+
        
 ### <a name="section3" />👤역할 및 담당 업무  [🔝](#section0)
 - 팀장: 기술 표준 선택, 설계 표준 작성, 개발 일정 관리, 기술 지원  
