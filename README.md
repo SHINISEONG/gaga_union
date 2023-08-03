@@ -2,22 +2,23 @@
 > Naver Cloud 개발자 양성 과정 2기  '팀 비트-원'  
 > 신희성, 전유빈, 윤예슬, 이현석, 임  철
 
-## 🚀바로가기
-### [1.📱웹 앱 소개](#웹-앱-소개--)
-### [2.💼프로젝트 산출물](#프로젝트-산출물--)
-### [3.👤역할 및 담당 업무](#역할-및-담당-업무)
+## <a name="section0" />🚀바로가기
+### [1.📱웹 앱 소개](#section1)
+### [2.💼프로젝트 산출물](#section2)
+### [3.👤역할 및 담당 업무](#section3)
 ### [4.⚙️담당 서브 시스템 구현 기능](#section4)
-### [5.♾️DevOps](#DevOps)
-### [6.🏗️웹 아키텍쳐](#웹-아키텍쳐)
-### [7.☁️Cloud Infra](#Cloud-Infra)
-### [8.💽ERD](#ERD)
-### [9.✔️문제 해결 부분](#✔️문제-해결-부분)
-### [10.📊프로젝트 기여도](#프로젝트-기여도)
-### [11.💭프로젝트 소감 및 의의](#프로젝트-소감-및-의의)
+### [5.♾️DevOps](#section5)
+### [6.🏗️웹 아키텍쳐](#section6)
+### [7.☁️Cloud Infra](#section7)
+### [8.💽ERD](#section8)
+### [9.✔️문제 해결 부분](#section9)
+### [10.🔧아쉬운 점 및 추가하고 싶은 기능](#section10)
+### [11.📊프로젝트 기여도](#section11)
+### [12.💭프로젝트 소감 및 의의](#section12)
 
 ---
 
-### 📱웹 앱 소개  [🔝](#바로가기)
+### <a name="section1" />📱웹 앱 소개  [🔝](#section0)
 > 가치, 가자 - 국내의 오프라인 모임을 지원하는 온라인 플랫폼 가가.  
 * 가가는 회원가입시 인증 절차를 통해 신원이 확실한 사람들의 안전한 모임을 지원하는 모임 지원 플랫폼 입니다.  
 * 여러 모임 리더들의 모임 주최 내역과 리뷰를 확인하여 마음에 드는 모임에 참여하거나, 직접 모임의 장소, 날짜, 목적을 정해 모임을 주최해 보세요.  
@@ -36,7 +37,7 @@
   ·프로필을 꾸밀 수 있고, 프로필 페이지를 통해 소통 가능
 </pre>
 
-### 💼프로젝트 산출물  [🔝](#바로가기)
+### <a name="section2" />💼프로젝트 산출물  [🔝](#section0)
 
 * 소스 코드  
 [Github - https://github.com/SHINISEONG/gaga_union](https://github.com/SHINISEONG/gaga_union)
@@ -56,7 +57,7 @@
      - 분석 산출물 : Use Case Modeling, Application Modeling, 화면분석, 데이터분석  
      - 설계 산출물 : Application Modeling, 화면 분석, 데이터 분석
        
-### 👤역할 및 담당 업무  [🔝](#바로가기)
+### <a name="section3" />👤역할 및 담당 업무  [🔝](#section0)
 - 팀장: 기술 표준 선택, 설계 표준 작성, 개발 일정 관리, 기술 지원  
 - React, Express Git 관리자 : React, Express 개발 환경 구성 및 Source 관리, Spring Boot 개발 환경 구성  
 - CI/CD 관리자 : 젠킨스 CI/CD 구성  
@@ -66,7 +67,7 @@
 
 ---
 
-### <a name="section4" />⚙️담당 서브 시스템 구현 기능  [🔝](#바로가기)
+### <a name="section4" />⚙️담당 서브 시스템 구현 기능  [🔝](#section0)
 
 
 
@@ -146,7 +147,7 @@
 
 ---
 
-## ♾️DevOps  [🔝](#바로가기)
+## <a name="section5" />♾️DevOps  [🔝](#section0)
 
 ![데브옵스](https://imgur.com/Jv8Ex8Z.png)
 
@@ -163,7 +164,7 @@
 
 ---
 
-### 🏗️ 웹 아키텍쳐  [🔝](#바로가기)
+### <a name="section6" />🏗️ 웹 아키텍쳐  [🔝](#section0)
 
 ![웹아키텍쳐](https://imgur.com/QFAua48.png)  
 
@@ -264,7 +265,7 @@
 
 ---
 
-### ☁️ Cloud Infra  [🔝](#바로가기)
+### <a name="section7" />☁️ Cloud Infra  [🔝](#section0)
 > Naver Cloud Platfrom 기반의 Cloud 구성
 > On Demand 방식으로 Infra 구성 및 확장 용이
 > SPOF(Single Point Of Failure)에 대한 Fail Over 설정
@@ -300,7 +301,7 @@
 
 </details>
 
-#### 2. CI/CD 구성  [🔝](#바로가기)
+#### 2. CI/CD 구성  [🔝](#section0)
 ![CICD구성](https://imgur.com/fIMMCz0.png)
 
 <details>
@@ -328,12 +329,12 @@
 
 ---
 
-### 💽ERD  [🔝](#바로가기)
+### <a name="section8" />💽ERD  [🔝](#section0)
 ![Imgur](https://i.imgur.com/m9cE1en.png)
 
 ---
 
-### ✔️문제 해결 부분  [🔝](#바로가기)
+### <a name="section9" />✔️문제 해결 부분  [🔝](#section0)
 #### 1. 코드 관련 부분
 > 웹 어플리케이션 내부 알림 시스템 구현
 
@@ -673,7 +674,7 @@
 
       
 
-### 🔧아쉬운 점 및 추가하고 싶은 기능  [🔝](#바로가기)
+### <a name="section10" />🔧아쉬운 점 및 추가하고 싶은 기능  [🔝](#section0)
 #### 1. 토큰 방식 인증, 인가
 <details>
 	<summary>자세히 보기</summary>
@@ -746,7 +747,7 @@
 
      
 
-### 📊프로젝트 기여도  [🔝](#바로가기)
+### <a name="section11" />📊프로젝트 기여도  [🔝](#section0)
 #### 1. 객관적 기여도
 * Commit 기여도 : 37.4%
 * 기여 Commit 수 : 166 / 443 Commits
@@ -774,7 +775,7 @@
 	 	* React
 		* Express
 
-### 💭프로젝트 소감 및 의의  [🔝](#바로가기)
+### <a name="section12" />💭프로젝트 소감 및 의의  [🔝](#section0)
 * 개인 Mini 프로젝트만 구현하다가 처음으로 해본 팀 프로젝트였습니다.  
   팀 프로젝트에서 중요한 부분은 리더쉽, 역할 분담, 소통 등 여러 부분이 있겠지만 딱, 한 가지만 뽑자면 '표준'을 뽑고싶습니다.  
   구현 과정이 코드가 되었든, 분석/설계 과정의 서류가 되었든 기준이 없으면 소통이 어렵고, 취합이 어렵다는 점을 느꼈습니다.
